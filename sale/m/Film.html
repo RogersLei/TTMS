@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>x</title>
+
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+      <script src=""></script><!--html5shiv-->
+  <script src=""></script><!--respond-->
+  <![endif]-->
+</head>
+<body>
+<div class="text-center">
+  <table class="table table-bordered table-hover table-striped">
+    <tr class="">
+      <th class="col-xs-offset-3 col-sm-3 text-center">名称</th>
+      <th class="col-xs-offset-3 col-sm-3 hidden-xs text-center">语言</th>
+      <th class="col-xs-offset-3 col-sm-3 hidden-xs text-center">时长</th>
+      <th class="col-xs-offset-3 col-sm-3 text-center">操作</th>
+    </tr>
+    <tr class="">
+      <td class="col-xs-offset-3 col-sm-3">西马卡</td>
+      <td class="col-xs-offset-3 col-sm-3 hidden-xs"></td>
+      <td class="col-xs-offset-3 col-sm-3 hidden-xs"></td>
+      <td class="col-xs-offset-3 col-sm-3">
+        <a href="#updateFilm" class="btn btn-warning" data-toggle="modal">修改</a>
+        <a href="" class="btn btn-danger">删除</a>
+      </td>
+    </tr>
+    <tr class="">
+      <td class="col-xs-offset-3 col-sm-3">西马卡</td>
+      <td class="col-xs-offset-3 col-sm-3 hidden-xs"></td>
+      <td class="col-xs-offset-3 col-sm-3 hidden-xs"></td>
+      <td class="col-xs-offset-3 col-sm-3">
+        <a href="" class="btn btn-warning" data-toggle="modal">修改</a>
+        <a href="" class="btn btn-danger">删除</a>
+      </td>
+    </tr>
+    <tr class="">
+      <td class="col-xs-offset-3 col-sm-3">西马卡</td>
+      <td class="col-xs-offset-3 col-sm-3 hidden-xs"></td>
+      <td class="col-xs-offset-3 col-sm-3 hidden-xs"></td>
+      <td class="col-xs-offset-3 col-sm-3">
+        <a href="" class="btn btn-warning" data-toggle="modal">修改</a>
+        <a href="" class="btn btn-danger">删除</a>
+      </td>
+    </tr>
+    <tr class="">
+      <td class="col-xs-offset-3 col-sm-3">西马卡</td>
+      <td class="col-xs-offset-3 col-sm-3 hidden-xs"></td>
+      <td class="col-xs-offset-3 col-sm-3 hidden-xs"></td>
+      <td class="col-xs-offset-3 col-sm-3">
+        <a href="" class="btn btn-warning" data-toggle="modal">修改</a>
+        <a href="" class="btn btn-danger">删除</a>
+      </td>
+    </tr>
+    <tr class="">
+      <td class="col-xs-offset-3 col-sm-3">西马卡</td>
+      <td class="col-xs-offset-3 col-sm-3 hidden-xs"></td>
+      <td class="col-xs-offset-3 col-sm-3 hidden-xs"></td>
+      <td class="col-xs-offset-3 col-sm-3">
+        <a href="" class="btn btn-warning" data-toggle="modal">修改</a>
+        <a href="" class="btn btn-danger">删除</a>
+      </td>
+    </tr>
+  </table>
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <li>
+        <a href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li>
+        <a href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<!--UpdateFilm-->
+<div class="modal fade" id="updateFilm">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">修改影片</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" method="post" action="">
+          <div class="form-group">
+            <label for="fn" class="col-sm-2">影片名称</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="fn" placeholder="西马卡">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fl" class="col-sm-2">影片语种</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="fl" list="Language" placeholder="">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+              <datalist id="Language">
+                <option value="中文"></option>
+                <option value="English"></option>
+                <option value="粤语"></option>
+              </datalist>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ft" class="col-sm-2">影片时长</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="ft" placeholder="">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+        <a href="javascript:;" class="btn btn-primary">Save changes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../js/jquery1.11.3.min.js"></script>
+<script src="../../js/bootstrap.js"></script>
+<!--<script>-->
+  <!--(function () {-->
+    <!--var s = document.createElement("script");-->
+    <!--s.onload = function () {-->
+      <!--bootlint.showLintReportForCurrentDocument([]);-->
+    <!--};-->
+    <!--s.src = "https://maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js";-->
+    <!--document.body.appendChild(s)-->
+  <!--})();-->
+<!--</script>-->
+</body>
+</html>

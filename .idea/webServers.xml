@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="3e70319e-6e78-402c-be46-54cfdc687fa2" name="A" url="http://localhost/TTMS">
+        <fileTransfer port="0" mountedRoot="D:\Project\TTMS" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

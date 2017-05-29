@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> </title>
+
+  <link href="../css/bootstrap.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+      <script src=""></script><!--html5shiv-->
+  <script src=""></script><!--respond-->
+  <![endif]-->
+
+  <style>
+  @media screen and (min-width: 365px){
+    .only{font-size: 26px;}
+  }
+  @media screen and (max-width: 364px){
+    .only{font-size: 18px;}
+  }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="#" class="navbar-brand">Logo</a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+      <form action="" class="navbar-form navbar-right">
+        <div class="input-group">
+          <span class="input-group-addon">Welcome <span>admin</span></span>
+          <span class="input-group-addon">当前权限为<span></span></span>
+          <a href="javascript:;" class="btn btn-danger" onclick="exit()">Exit</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="hidden-sm hidden-md hidden-lg col-xs-12">
+      <span class="only">当前屏幕只支持售票功能</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 col-sm-3 hidden-xs">
+      <div class="panel-group" id="name">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a href="#Film" class="panel-title" data-toggle="collapse" data-parent="#name">影片管理</a>
+          </div>
+          <div class="collapse panel-collapse in" id="Film">
+            <div class="panel-body">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="m/Film.html" target="iframe">显示影片列表</a></li>
+                <li><a href="#addFilm" data-toggle="modal">添加影片</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a href="#Plan" class="panel-title" data-toggle="collapse" data-parent="#name">计划管理</a>
+          </div>
+          <div class="collapse panel-collapse" id="Plan">
+            <div class="panel-body">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="" target="iframe">显示计划列表</a></li>
+                <li><a href="">添加计划</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a href="#Sale" class="panel-title" data-toggle="collapse" data-parent="#name">售票系统</a>
+          </div>
+          <div class="collapse panel-collapse" id="Sale">
+            <div class="panel-body">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a href="#Home" class="panel-title" data-toggle="collapse" data-parent="#name">影厅管理</a>
+          </div>
+          <div class="collapse panel-collapse" id="Home">
+            <div class="panel-body">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="" target="iframe">显示影厅列表</a></li>
+                <li><a href="">添加影厅</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a href="#User" class="panel-title" data-toggle="collapse" data-parent="#name">用户管理</a>
+          </div>
+          <div class="collapse panel-collapse" id="User">
+            <div class="panel-body">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="m/user.php?1" target="iframe" >显示所有用户</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10 col-sm-9">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="sale.html" name="iframe"  id="iframe"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AddFilm -->
+<div class="modal fade" id="addFilm">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加影片</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" method="post" action="">
+          <div class="form-group">
+            <label for="fn" class="col-sm-2">影片名称</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="fn">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fl" class="col-sm-2">影片语种</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="fl" list="Language">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+              <datalist id="Language">
+                <option value="中文"></option>
+                <option value="English"></option>
+                <option value="粤语"></option>
+              </datalist>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ft" class="col-sm-2">影片时长</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="ft" >
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+        <a href="javascript:;" class="btn btn-primary">Save changes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/jquery1.11.3.min.js"></script>
+<script src="../js/bootstrap.js"></script>
+<!--<script>-->
+  <!--(function () {-->
+    <!--var s = document.createElement("script");-->
+    <!--s.onload = function () {-->
+      <!--bootlint.showLintReportForCurrentDocument([]);-->
+    <!--};-->
+    <!--s.src = "https://maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js";-->
+    <!--document.body.appendChild(s)-->
+  <!--})();-->
+<!--</script>-->
+</body>
+</html>
