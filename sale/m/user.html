@@ -13,103 +13,107 @@
   <![endif]-->
 
 </head>
-<body>
-  <table class="table table-bordered table-hover table-striped">
-    <tr class="">
-      <th class="col-xs-offset-3 col-sm-3 text-center">姓名</th>
-      <th class="col-xs-offset-3 col-sm-3 hidden-xs text-center">登录名称</th>
-      <th class="col-xs-offset-3 col-sm-3 hidden-xs text-center">登录密码</th>
-      <th class="col-xs-offset-3 col-sm-3 text-center">操作</th>
-    </tr>
-    <!--PHP foreach循环实现-->
-    <?php for($i=$start_index;$i<=$end_index;$i++): ?>
-      <tr>
-        <td class="col-xs-offset-3 col-sm-3">
-          <?php echo $list[$i]['username'];?>
-        </td>
-        <td class="col-xs-offset-3 col-sm-3 hidden-xs">
-          <?php echo $list[$i]['useraccount']?>
-        </td>
-        <td class="col-xs-offset-3 col-sm-3 hidden-xs">
-          <?php echo $list[$i]['userpassword']?>
-        </td>
-        <td class="col-xs-offset-3 col-sm-3">
-          <a href="#UpdateUser" class="btn btn-warning" data-toggle="modal">修改</a>
-          <a href="" class="btn btn-danger">删除</a>
-        </td>
-      </tr>
+<body class="text-center">
+<table class="table table-bordered table-hover table-striped">
+  <tr class="">
+    <th class="col-xs-offset-3 col-sm-1 hidden-xs text-center">编号</th>
+    <th class="col-xs-offset-3 col-sm-3 text-center">姓名</th>
+    <th class="col-xs-offset-3 col-sm-3 hidden-xs text-center">密码</th>
+    <th class="col-xs-offset-3 col-sm-2 hidden-xs text-center">权限</th>
+    <th class="col-xs-offset-3 col-sm-3 text-center">操作</th>
+  </tr>
+  <!--PHP foreach循环实现-->
+  <?php for($i=$start_index;$i<=$end_index;$i++): ?>
+  <tr>
+    <td class="col-xs-offset-3 col-sm-1 hidden-xs">
+      <?php echo $list[$i]['User_ID'];?>
+    </td>
+    <td class="col-xs-offset-3 col-sm-3">
+      <?php echo $list[$i]['User_Name'];?>
+    </td>
+    <td class="col-xs-offset-3 col-sm-3 hidden-xs">
+      <?php echo $list[$i]['User_Pwd']?>
+    </td>
+    <td class="col-xs-offset-3 col-sm-2 hidden-xs">
+      <?php echo $list[$i]['User_Type']?>
+    </td>
+    <td class="col-xs-offset-3 col-sm-3">
+      <a href="#UpdateUser" class="btn btn-warning" data-toggle="modal">修改</a>
+      <a href="javascript:void(0);" class="btn btn-danger" onclick="delUser(this)">删除</a>
+    </td>
+  </tr>
+  <?php endfor ?>
+</table>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="userlist.php?page=<?=$pre_page ?>" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <?php for($j=1;$j<$total_page+1;$j++):?>
+    <li><a href="userlist.php?page=<?=$j ?>"><?=$j ?></a></li>
     <?php endfor ?>
-  </table>
-  <nav aria-label="Page navigation">
-    <ul class="pagination">
-      <li>
-        <a href="user.php?page=<?=$pre_page ?>" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      <?php for($j=1;$j<$total_page+1;$j++):?>
-        <li><a href="user.php?page=<?=$j ?>"><?=$j ?></a></li>
-      <?php endfor ?>
-      <li>
-        <a href="user.php?page=<?=$next_page ?>" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+    <li>
+      <a href="userlist.php?page=<?=$next_page ?>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 
-  <div class="modal fade" id="UpdateUser">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">修改用户</h4>
-        </div>
-        <div class="modal-body">
-          <form class="form-horizontal" method="post" action="">
-            <div class="form-group">
-              <label for="fnum" class="col-sm-2">用户编号</label>
-              <div class="col-sm-10 has-feedback">
-                <input type="text" class="form-control" id="fnum" disabled>
-              </div>
+<div class="modal fade" id="UpdateUser">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">修改用户</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" method="post" action="">
+          <div class="form-group">
+            <label for="unum" class="col-sm-2">用户编号</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="unum" disabled>
             </div>
-            <div class="form-group">
-              <label for="fn" class="col-sm-2">用户姓名</label>
-              <div class="col-sm-10 has-feedback">
-                <input type="text" class="form-control" id="fn">
-                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
-              </div>
+          </div>
+          <div class="form-group">
+            <label for="un" class="col-sm-2">用户姓名</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="un">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
             </div>
-            <div class="form-group">
-              <label for="fl" class="col-sm-2">登录名称</label>
-              <div class="col-sm-10 has-feedback">
-                <input type="text" class="form-control" id="fl">
-                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
-              </div>
+          </div>
+          <div class="form-group">
+            <label for="up" class="col-sm-2">登录密码</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="up">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
             </div>
-            <div class="form-group">
-              <label for="ft" class="col-sm-2">用户权限</label>
-              <div class="col-sm-10 has-feedback">
-                <input type="text" class="form-control" id="ft" list="Power">
-                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
-                <datalist id="Power">
-                  <option value="管理员"></option>
-                  <option value="售票员"></option>
-                </datalist>
-              </div>
+          </div>
+          <div class="form-group">
+            <label for="ut" class="col-sm-2">用户权限</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="ut" list="Power">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+              <datalist id="Power">
+                <option value="管理员"></option>
+                <option value="售票员"></option>
+              </datalist>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-          <a href="javascript:;" class="btn btn-primary" onclick="update()">Save changes</a>
-        </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+        <a href="javascript:;" class="btn btn-primary" onclick="updateUser()">Save changes</a>
       </div>
     </div>
   </div>
+</div>
 
 <script src="../../js/jquery1.11.3.min.js"></script>
 <script src="../../js/bootstrap.js"></script>
-  <script src="../../js/menu.js"></script>
+<script src="../../js/menu.js"></script>
 </body>
 </html>

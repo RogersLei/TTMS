@@ -19,17 +19,63 @@ function check() {
   return true;
 }
 
-$('#UpdateUser').on('show.bs.modal', function (event) {
+$('#UpdateUser').on('show.bs.modal', function (event){
   var a = $(event.relatedTarget);
   //可以用此方式获取该行的标识，用于修改
-  var num = a.parent().prevAll()[0].innerHTML; //从后往前数
+  var num = $.trim(a.parent().prevAll()[3].innerHTML); //从后往前
+  var name = $.trim(a.parent().prevAll()[2].innerHTML);
+  var pwd = $.trim(a.parent().prevAll()[1].innerHTML);
+  var type = $.trim(a.parent().prevAll()[0].innerHTML);
   modal = $(this);
-  modal.find("#fnum").val(num);
+  modal.find("#unum").val(num);
+  modal.find("#un").val(name);
+  modal.find("#up").val(pwd);
+  modal.find("#ut").val(type);
 });
 
-function update() {
-  var num = $("#fnum").val();
-  console.log(num);
+function updateUser() {
+  var num = $("#unum").val();
+  var name = $("#un").val();
+  var pwd = $("#up").val();
+  var type = $("#ut").val();
+  var operation = "update";
+  //console.log(num+name+pwd+type);
+  var data = {'usernum':num,'username':name,'userpassword':pwd,'usertype':type,'operation':operation};
+  $.post("user.php",data,function () {
+    alert("update success");
+    location.href = "userlist.php?1";
+  });
+}
+
+function addUser() {
+  var name = $("#un").val();
+  var pwd = $("#up").val();
+  var type = $("#ut").val();
+  var operation = "add";
+  var status = name!="" && name!=null && pwd!="" && pwd!=null && type!="" && type!=null;
+  if(status){
+    var data = {'username':name,'userpassword':pwd,'usertype':type,'operation':operation};
+    $.post("m/user.php",data,function () {
+      alert("Insert success");
+      location.href = "userlist.php?1";
+    });
+  }
+  else{
+    alert("please input information");
+  }
+}
+
+function delUser(e) {
+  var a = $(e);
+  var usernum = $.trim(a.parent().prevAll()[3].innerHTML);
+  var operation = "del";
+  //console.log(usernum);
+
+  var data = {'usernum':usernum,'operation':operation};
+  $.post("user.php",data,function () {
+    alert("Del success");
+    location.href = "userlist.php?1";
+  });
 }
 
 function getXhr(){//获取XMLHttpRequest对象
