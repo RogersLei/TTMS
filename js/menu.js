@@ -53,7 +53,6 @@ function addUser() {
   var type = $("#ut").val();
   var operation = "add";
   var status = name!="" && name!=null && pwd!="" && pwd!=null && type!="" && type!=null;
-  var iframe = document.getElementById("iframe");
   if(status){
     var data = {'username':name,'userpassword':pwd,'usertype':type,'operation':operation};
     $.post("m/user.php",data,function () {
@@ -76,6 +75,51 @@ function delUser(e) {
   $.post("user.php",data,function () {
     alert("Del success");
     location.href = "userlist.php?1";
+  });
+}
+
+function addFilm() {
+  var filmname = $("#fn").val();
+  var filmlanguage= $("#fl").val();
+  var filmtime = $("#ft").val();
+  var operation = "add";
+  var status = filmname!="" && filmname!=null && filmlanguage!="" && filmlanguage!=null && filmtime!="" && filmtime!=null;
+  if(status){
+    var data = {'filmname':filmname,'filmlanguage':filmlanguage,'filmtime':filmtime,'operation':operation};
+    $.post("m/film.php",data,function () {
+      alert("Insert success");
+      location.href = "filmlist.php?1";
+    });
+  }
+  else{
+    alert("please input information");
+  }
+}
+
+function updateFilm() {
+  var filmnum = $("#fnum").val();
+  var filmname = $("#fn").val();
+  var filmlanguage= $("#fp").val();
+  var filmtime= $("#ft").val();
+  var operation = "update";
+  //console.log(num+name+pwd+type);
+  var data = {'filmnum':filmnum,'filmname':filmname,'filmlanguage':filmlanguage,'filmtime':filmtime,'operation':operation};
+  $.post("film.php",data,function () {
+    alert("update success");
+    location.href = "filmlist.php?1";
+  });
+}
+
+function delFilm(e) {
+  var a = $(e);
+  var filmnum = $.trim(a.parent().prevAll()[3].innerHTML);
+  var operation = "del";
+  //console.log(usernum);
+
+  var data = {'filmnum':filmnum,'operation':operation};
+  $.post("film.php",data,function () {
+    alert("Del success");
+    location.href = "filmlist.php?1";
   });
 }
 
