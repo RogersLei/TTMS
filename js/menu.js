@@ -53,6 +53,7 @@ function addUser() {
   var type = $("#ut").val();
   var operation = "add";
   var status = name!="" && name!=null && pwd!="" && pwd!=null && type!="" && type!=null;
+  var iframe = document.getElementById("iframe");
   if(status){
     var data = {'username':name,'userpassword':pwd,'usertype':type,'operation':operation};
     $.post("m/user.php",data,function () {

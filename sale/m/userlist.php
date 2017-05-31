@@ -2,16 +2,16 @@
     header('Content-Type:text/html;charset=utf-8');
     $con = mysqli_connect('localhost','root','','ttms');
 
-    $sql = "SELECT * FROM User";
+    $sql = "SELECT * FROM user";
     if(!$con){
         echo "{'status':'error'}";
     }
     else{
         mysqli_set_charset($con,"utf8");
-        $list = array();
+        $Userlist = array();
         $result = mysqli_query($con,$sql);
         while($array = mysqli_fetch_array($result)){
-          $list[] = $array;
+          $Userlist[] = $array;
         }
     }
 

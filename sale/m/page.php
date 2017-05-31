@@ -1,6 +1,6 @@
 <?php
     header('Content-Type:text/html;charset=utf-8');
-    $total_num = count($list);  //总记录数
+    $total_num = count($Userlist);  //总记录数
     $perpage = 5;               //每页记录数
     $page = isset($_GET['page'])?(int)$_GET['page']:1;
     $total_page = ceil($total_num/$perpage); //总页数
