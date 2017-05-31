@@ -8,17 +8,17 @@
     }
     else{
         mysqli_set_charset($con,"utf8");
-        $Userlist = array();
+        $Filmlist = array();
         $result = mysqli_query($con,$sql);
         while($array = mysqli_fetch_array($result)){
-          $Userlist[] = $array;
+          $Filmlist[] = $array;
         }
     }
 
 
-    require_once 'page.php';
+    require_once 'filmpage.php';
 
-    require_once "user.html";
+    require_once "Film.html";
     //require_once "../../js/menu.js";
     mysqli_close($con);
 ?>
