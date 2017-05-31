@@ -19,6 +19,11 @@ function check() {
   return true;
 }
 
+function exit(){
+  location.href = "../php/logout.php";
+  return false;
+}
+
 $('#UpdateUser').on('show.bs.modal', function (event){
   var a = $(event.relatedTarget);
   //可以用此方式获取该行的标识，用于修改

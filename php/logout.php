@@ -1,0 +1,9 @@
+<?php
+    header('Content-Type:text/html;charset=utf-8');
+    session_start();
+    unset($_SESSION['name']);
+    unset($_SESSION['type']);
+    session_destroy();
+    header('Location:../index.html');
+    exit;
+?>
