@@ -13,11 +13,10 @@
     }
     //添加影厅
     if($operation=="add"){
-        $sql = "insert into Studio (Studio_Name,Studio_Row,Studio_Col) values ('".$studioname."','".$studiorow."','".$studiocol."')";
+        $sql1 = "insert into Studio (Studio_Name,Studio_Row,Studio_Col) values ('".$studioname."','".$studiorow."','".$studiocol."')";
         mysqli_set_charset($con,"utf8");
-        $result = mysqli_query($con,$sql);
-        if(!$result){
-        //echo "{'status':'sql error'}";
+        $result1 = mysqli_query($con,$sql1);
+        if(!$result1){
             echo mysqli_error($con);
             exit();
         }

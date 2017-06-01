@@ -12,22 +12,80 @@
       <script src=""></script><!--html5shiv-->
   <script src=""></script><!--respond-->
   <![endif]-->
-
+  <style>
+    .fa{
+      font-size: 26px;
+    }
+    .seat{
+      margin-top: 40px;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-<h1>你好世界</h1>
-<!--<div class="container">-->
-  <!--<h5>当前查看的影厅为<?=$name ?></h5>-->
-  <!--<div>-->
-    <!--&lt;!&ndash;<i class="fa fa-circle-o" onclick="changeSeat()"></i>&ndash;&gt;-->
-  <!--</div>-->
-  <!--<div>-->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2 col-xs-3">
+      <h2>
+        <a href="javascript:void(0);" class="btn btn-warning" onclick="reback()">返回</a>
+      </h2>
+    </div>
+    <div class="col-sm-4 hidden-xs text-center">
+      <h2>查看座位</h2>
+    </div>
+    <div class="col-sm-6 col-xs-9 text-center">
+      <h2>
+        <a class="btn btn-success" disabled>当前影厅为<?=$name ?></a>
+      </h2>
+    </div>
+  </div>
+  <div class="row  seat">
+    <div class="col-sm-8 col-xs-6 text-center">
+      <?php for($i=1;$i<$row+1;$i++):?>
+      <?php for($j=1;$j<$col+1;$j++):?>
+      <a href="seat.php?crow=<?=$i ?>&&ccol=<?=$j ?>&&name=<?=$name ?>&&row=<?=$row ?>&&col=<?=$col ?>&&id=<?=$id ?>"
+         class="fa fa-<?=$fa[$i][$j] ?>"></a>
+      <?php endfor ?>
+      <br/>
+      <?php endfor ?>
+    </div>
+    <div class="col-sm-4 col-xs-6 text-center">
+      <form class="form-horizontal" method="post" action="">
+        <div class="form-group">
+          <label for="rn" class="col-xs-3">行号</label>
+          <div class="col-xs-9 has-feedback">
+            <input type="text" class="form-control" id="rn" placeholder="<?=$clickrow ?>" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cn" class="col-xs-3">列号</label>
+          <div class="col-xs-9 has-feedback">
+            <input type="text" class="form-control" id="cn" placeholder="<?=$clickcol ?>" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="st" class="col-xs-3">状态</label>
+          <div class="col-xs-9 has-feedback">
+            <input type="text" class="form-control" id="st" placeholder="<?=$stype ?>" list="status">
+            <datalist id="status">
+              <option value="未锁定"></option>
+              <option value="已锁定"></option>
+              <option value="已交易"></option>
+              <option value="已损坏"></option>
+            </datalist>
+          </div>
+        </div>
+      </form>
+      <a href="javascript:void(0);" class="btn btn-warning" onclick="changeSeat(<?=$id ?>,<?=$row ?>,<?=$col ?>)">修改</a>
+    </div>
+  </div>
+</div>
 
-  <!--</div>-->
-<!--</div>-->
 
-
-<!--<script src="../../js/jquery1.11.3.min.js"></script>-->
-<!--<script src="../../js/bootstrap.js"></script>-->
+<script src="../../js/jquery1.11.3.min.js"></script>
+<script src="../../js/bootstrap.js"></script>
+<script src="../../js/menu.js"></script>
 </body>
 </html>

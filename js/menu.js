@@ -24,6 +24,29 @@ function exit() {
   return false;
 }
 
+function reback() {
+  history.back(-1);
+}
+
+function changeSeat(studioid,row,col) {
+  var crow = $('#rn').val();
+  var ccol = $('#cn').val();
+  var type = $('#st').val();
+  var data = {
+    'id': studioid,
+    'row':row,
+    'col':col,
+    'type':type,
+    'crow':crow,
+    'ccol':ccol
+  };
+
+  $.get("seat.php",data,function () {
+    alert("update success");
+    location.href = "seat.php?name=+name+&&id=+studioid+&&row=+row+&&col=+col";
+    alert("seat.php?name="+name+"&&id="+studioid+"&&row="+row+"&&col="+col);
+  })
+}
 //用户管理
 
 $('#UpdateUser').on('show.bs.modal', function (event) {
@@ -189,10 +212,10 @@ function delFilm(e) {
 $('#UpdateStudio').on('show.bs.modal', function (event) {
   var a = $(event.relatedTarget);
   //可以用此方式获取该行的标识，用于修改
-  var num = $.trim(a.parent().prevAll()[3].innerHTML); //从后往前
-  var name = $.trim(a.parent().prevAll()[2].innerHTML);
-  var row = $.trim(a.parent().prevAll()[1].innerHTML);
-  var col = $.trim(a.parent().prevAll()[0].innerHTML);
+  var num = $.trim(a.parent().prevAll()[4].innerHTML); //从后往前
+  var name = $.trim(a.parent().prevAll()[3].innerHTML);
+  var row = $.trim(a.parent().prevAll()[2].innerHTML);
+  var col = $.trim(a.parent().prevAll()[1].innerHTML);
   modal = $(this);
   modal.find("#stnum").val(num);
   modal.find("#stn").val(name);
@@ -246,7 +269,7 @@ function addStudio() {
 
 function delStudio(e) {
   var a = $(e);
-  var studionum = $.trim(a.parent().prevAll()[3].innerHTML);
+  var studionum = $.trim(a.parent().prevAll()[4].innerHTML);
   var operation = "del";
   //console.log(studionum);
 
