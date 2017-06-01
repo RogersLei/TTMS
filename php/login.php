@@ -30,7 +30,7 @@
                     exit;
                 }
                 else if($type == "售票员"){
-                    header('Location:../sale/sale.html');
+                    header('Location:../sale/sale.php');
                     exit;
                 }
             }

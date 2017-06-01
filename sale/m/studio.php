@@ -2,20 +2,18 @@
     header('Content-Type:text/html;charset=utf-8');
     $con = mysqli_connect('localhost','root','','ttms');
 
-    $filmname = isset($_POST['filmname'])?$_POST['filmname']:"";
-    $filmtype = isset($_POST['filmtype'])?$_POST['filmtype']:"";
-    $filmtime = isset($_POST['filmtime'])?$_POST['filmtime']:"";
-    $filmprice = isset($_POST['filmprice'])?$_POST['filmprice']:"";
+    $studioname = isset($_POST['studioname'])?$_POST['studioname']:"";
+    $studiorow = isset($_POST['studiorow'])?$_POST['studiorow']:"";
+    $studiocol = isset($_POST['studiocol'])?$_POST['studiocol']:"";
     $operation = $_POST['operation'];
 
 
     if(!$con){
         echo "{'status':'error'}";
     }
-    //添加film
+    //添加影厅
     if($operation=="add"){
-        $sql = "insert into movie(Movie_Name,Movie_Type,Movie_Time,Movie_Price) values ('".$filmname."','".$filmtype."','".$filmtime."','".$filmprice."')";
-        //echo $sql;
+        $sql = "insert into Studio (Studio_Name,Studio_Row,Studio_Col) values ('".$studioname."','".$studiorow."','".$studiocol."')";
         mysqli_set_charset($con,"utf8");
         $result = mysqli_query($con,$sql);
         if(!$result){
@@ -24,10 +22,11 @@
             exit();
         }
     }
-    //更改film
+    //更改影厅
     else if($operation=="update"){
-        $filmnum = $_POST['filmnum'];
-        $sql = "update movie set Movie_Name='".$filmname."',Movie_Time='".$filmtime."',Movie_Type='".$filmtype."' where Movie_ID=$filmnum ";
+        $studionum = $_POST['studionum'];
+        $sql = "update Studio set Studio_Name='".$studioname."',Studio_Row='".$studiorow."',Studio_Col='".$studiocol."' where Studio_ID=$studionum ";
+        echo $sql;
         mysqli_set_charset($con,"utf8");
         $result = mysqli_query($con,$sql);
         if(!$result){
@@ -36,10 +35,10 @@
             exit();
         }
     }
-    //删除film
+    //删除影厅
     else if($operation=="del"){
-        $filmnum = $_POST['filmnum'];
-        $sql = "delete from movie where Movie_Id=$filmnum";
+        $studionum = $_POST['studionum'];
+        $sql = "delete from Studio where Studio_ID=$studionum";
         $result = mysqli_query($con,$sql);
         if(!$result){
         //echo "{'status':'sql error'}";

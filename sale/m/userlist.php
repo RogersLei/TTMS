@@ -16,7 +16,7 @@
     }
 
 
-    require_once 'page.php';
+    require_once 'userpage.php';
 
     require_once "user.html";
     //require_once "../../js/menu.js";

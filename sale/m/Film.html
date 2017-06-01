@@ -16,26 +16,31 @@
 <div class="text-center">
   <table class="table table-bordered table-hover table-striped">
     <tr class="">
-      <th class="col-xs-offset-3 col-sm-3 text-center">名称</th>
-      <th class="col-xs-offset-3 col-sm-3 hidden-xs text-center">语言</th>
-      <th class="col-xs-offset-3 col-sm-3 hidden-xs text-center">时长</th>
+      <th class="col-xs-offset-3 col-sm-1 hidden-xs text-center">编号</th>
+      <th class="col-xs-offset-3 col-sm-2 text-center">名称</th>
+      <th class="col-xs-offset-3 col-sm-2 hidden-xs text-center">类型</th>
+      <th class="col-xs-offset-3 col-sm-2 hidden-xs text-center">时长(分钟)</th>
+      <th class="col-xs-offset-3 col-sm-2 text-center">价格</th>
       <th class="col-xs-offset-3 col-sm-3 text-center">操作</th>
     </tr>
 
    
-    <?php for ($i=start_index;$i<=$end_index;$i++):?>
+    <?php for ($i=$start_index;$i<=$end_index;$i++):?>
         <tr>
     <td class="col-xs-offset-3 col-sm-1 hidden-xs">
-      <?php echo $list[$i]['Film_ID'];?>
+      <?php echo $Filmlist[$i]['Movie_Id'];?>
     </td>
-    <td class="col-xs-offset-3 col-sm-3">
-      <?php echo $list[$i]['Film_Name'];?>
-    </td>
-    <td class="col-xs-offset-3 col-sm-3 hidden-xs">
-      <?php echo $list[$i]['Film_Type']?>
+    <td class="col-xs-offset-3 col-sm-2">
+      <?php echo $Filmlist[$i]['Movie_Name'];?>
     </td>
     <td class="col-xs-offset-3 col-sm-2 hidden-xs">
-      <?php echo $list[$i]['Undefine']?>
+      <?php echo $Filmlist[$i]['Movie_Type'];?>
+    </td>
+    <td class="col-xs-offset-3 col-sm-2 hidden-xs">
+      <?php echo $Filmlist[$i]['Movie_Time'];?>
+    </td>
+    <td class="col-xs-offset-3 col-sm-2">
+      <?php echo $Filmlist[$i]['Movie_Price'];?>
     </td>
     <td class="col-xs-offset-3 col-sm-3">
       <a href="#UpdateFilm" class="btn btn-warning" data-toggle="modal">修改</a>
@@ -44,19 +49,20 @@
   </tr>
   <?php endfor ?>
   </table>
+
+  <!--分页-->
   <nav aria-label="Page navigation">
     <ul class="pagination">
       <li>
-        <a href="#" aria-label="Previous">
+        <a href="Filmlist.php?page=<?=$pre_page ?>" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      //<li><a href="#">1</a></li>
       <?php for ($j=1;$j< $total_page+1;$j++):?>
         <li><a href="Filmlist.php?page=<?=$j ?>"><?=$j ?></a></li>
-    <?php endfor ?>
+      <?php endfor ?>
       <li>
-        <a href="#" aria-label="Next">
+        <a href="Filmlist.php?page=<?=$next_page ?>" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>
@@ -64,7 +70,7 @@
   </nav>
 </div>
 <!--UpdateFilm-->
-<div class="modal fade" id="updateFilm">
+<div class="modal fade" id="UpdateFilm">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -74,28 +80,42 @@
       <div class="modal-body">
         <form class="form-horizontal" method="post" action="">
           <div class="form-group">
-            <label for="fn" class="col-sm-2">影片名称</label>
+            <label for="fnum" class="col-sm-2">影片编号</label>
             <div class="col-sm-10 has-feedback">
-              <input type="text" class="form-control" id="fn" placeholder="西马卡">
+              <input type="text" class="form-control" id="fnum">
               <span class="glyphicon glyphicon-ok form-control-feedback"></span>
             </div>
           </div>
           <div class="form-group">
-            <label for="fl" class="col-sm-2">影片语种</label>
+            <label for="fn" class="col-sm-2">影片名称</label>
             <div class="col-sm-10 has-feedback">
-              <input type="text" class="form-control" id="fl" list="Language" placeholder="">
+              <input type="text" class="form-control" id="fn">
               <span class="glyphicon glyphicon-ok form-control-feedback"></span>
-              <datalist id="Language">
-                <option value="中文"></option>
-                <option value="English"></option>
-                <option value="粤语"></option>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fty" class="col-sm-2">影片类型</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="fty" list="Type">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+              <datalist id="Type">
+                <option value="动作片"></option>
+                <option value="恐怖片"></option>
+                <option value="动画片"></option>
               </datalist>
             </div>
           </div>
           <div class="form-group">
-            <label for="ft" class="col-sm-2">影片时长</label>
+            <label for="ftm" class="col-sm-2">影片时长</label>
             <div class="col-sm-10 has-feedback">
-              <input type="text" class="form-control" id="ft" placeholder="">
+              <input type="text" class="form-control" id="ftm" >
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fp" class="col-sm-2">影片价格</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="fp">
               <span class="glyphicon glyphicon-ok form-control-feedback"></span>
             </div>
           </div>
@@ -103,7 +123,7 @@
       </div>
       <div class="modal-footer">
         <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
-        <a href="javascript:;" class="btn btn-primary">Save changes</a>
+        <a href="javascript:;" class="btn btn-primary" onclick="updateFilm()">Save changes</a>
       </div>
     </div>
   </div>
@@ -111,6 +131,7 @@
 
 <script src="../../js/jquery1.11.3.min.js"></script>
 <script src="../../js/bootstrap.js"></script>
+<script src="../../js/menu.js"></script>
 <!--<script>-->
   <!--(function () {-->
     <!--var s = document.createElement("script");-->

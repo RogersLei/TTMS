@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap 101 Template</title>
+  <title>Sale Ticket</title>
 
   <link href="../css/bootstrap.css" rel="stylesheet">
   <!--[if lt IE 9]>
@@ -13,8 +13,38 @@
   <![endif]-->
 
 </head>
-<body>
-<h1>你好，世界！</h1>
+<body style="margin-top: 20px;">
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 col-sm-3">
+      <!--计划列表-->
+      <h3>计划列表</h3>
+      <!--heading循环存放计划中的影片名称-->
+      <div class="panel-group" id="name">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a href="#Film" class="panel-title" data-toggle="collapse" data-parent="#name">影片管理</a>
+          </div>
+          <div class="collapse panel-collapse in" id="Film">
+            <!--body中循环存放计划中的影片-->
+            <div class="panel-body">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="" target="iframe"></a></li>
+                <li><a href="" data-toggle="modal"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10 col-sm-9">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="" name="iframes" id="iframes"></iframe>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 
 <script src="../js/jquery1.11.3.min.js"></script>

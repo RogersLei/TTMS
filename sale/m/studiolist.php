@@ -2,25 +2,23 @@
     header('Content-Type:text/html;charset=utf-8');
     $con = mysqli_connect('localhost','root','','ttms');
 
-    $sql = "SELECT * FROM movie";
+    $sql = "SELECT * FROM studio";
     if(!$con){
         echo "{'status':'error'}";
     }
     else{
-
         mysqli_set_charset($con,"utf8");
-        $Filmlist = array();
+        $Studiolist = array();
         $result = mysqli_query($con,$sql);
-
-        //echo "<script>alert($array);</script>";
         while($array = mysqli_fetch_array($result)){
-          $Filmlist[] = $array;
+          $Studiolist[] = $array;
         }
     }
 
-    require_once 'filmpage.php';
 
-    require_once "Film.html";
+    require_once 'studiopage.php';
+
+    require_once "studio.html";
     //require_once "../../js/menu.js";
     mysqli_close($con);
 ?>
