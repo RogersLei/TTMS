@@ -6,7 +6,7 @@
     $row = isset($_GET['row'])?$_GET['row']:"";
     $col = isset($_GET['col'])?$_GET['col']:"";
     $id = isset($_GET['id'])?$_GET['id']:"";
-
+    //echo "<script>alert($id);</script>";
 //          判断数据表中是否存在
     $sql = "select * from Seat where Studio_ID=$id and Seat_Row=$row and Seat_Col=$col";
     $result1 = mysqli_query($con,$sql);
@@ -18,26 +18,33 @@
     if(!$con){echo "{'status':'error'}";}
     else{
         if(!$num){ //初次进入
-            //echo "<script>alert('1');</script>";
+            //echo "<script>alert($id+' '+'22');</script>";
             $type = "未锁定";
-
+            $stype = "";
             for($i=1;$i<=$row;$i++){
                 for($j=1;$j<=$col;$j++){
+                    $fa[$i][$j] = "circle-o";
                     $sql1 = "insert into Seat (Studio_ID,Seat_Row,Seat_Col,Seat_Status) values ($id,$i,$j,'".$type."')";
                     mysqli_query($con,$sql1);
                 }
             }
         }
         else{
+
             if(isset($_GET['type'])){//修改
+                //echo "<script>alert($id+' '+'33');</script>";
+                //echo "<script>alert($id);</script>";
                 $type = $_GET['type'];
-                $sql3 = "update Seat set Seat_Status='".$type."' where Studio_ID=$id and Seat_Row=$row and Seat_Col=$col ";
+                $sql3 = "update Seat set Seat_Status='".$type."' where Studio_ID=$id and Seat_Row=$clickrow and Seat_Col=$clickcol ";
                 $result3 = mysqli_query($con,$sql3);
+                $stype = $type;
             }
             else{
+
                 $stype = "";
                 //echo "<script>alert('2');</script>";
                 if(isset($_GET['crow'])){  //是否点击
+                    //echo "<script>alert($id+'44');</script>";
                     $sql2 = "select Seat_Status from Seat where Studio_ID=$id and Seat_Row=$clickrow and Seat_Col=$clickcol";
                     $result2 = mysqli_query($con,$sql2);
                     //echo $result2;
@@ -48,7 +55,8 @@
                     $stype = $Status[0]['Seat_Status'];
                     //echo "<script>alert('".$stype."');</script>";
                 }
-
+            }
+                //echo "<script>alert($id+'55');</script>";
                 $sql4 = "select * from Seat where Studio_ID=$id";
                 $result4 = mysqli_query($con,$sql4);
                 $seatlist = array();
@@ -86,8 +94,10 @@
                 //echo "<script>alert($count);</script>";
                 //$test = $seatlist[5]['Seat_Status'];
                 //echo "<script>alert($test);</script>";
-            }
+
+
         }
     }
+
     require "seat.html";
 ?>

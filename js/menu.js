@@ -29,9 +29,11 @@ function reback() {
 }
 
 function changeSeat(studioid,row,col) {
-  var crow = $('#rn').val();
-  var ccol = $('#cn').val();
+  var crow = $('#rn').attr("placeholder");
+  var ccol = $('#cn').attr("placeholder");
   var type = $('#st').val();
+  var name = $('#nowname').text();
+
   var data = {
     'id': studioid,
     'row':row,
@@ -40,11 +42,11 @@ function changeSeat(studioid,row,col) {
     'crow':crow,
     'ccol':ccol
   };
-
+  var str = "seat.php?id="+studioid+"&row="+row+"&col="+col+"&crow="+crow+"&ccol="+ccol+"&type="+type+"&name="+name;
+  console.log(str);
   $.get("seat.php",data,function () {
     alert("update success");
-    location.href = "seat.php?name=+name+&&id=+studioid+&&row=+row+&&col=+col";
-    alert("seat.php?name="+name+"&&id="+studioid+"&&row="+row+"&&col="+col);
+    location.href = str;
   })
 }
 //用户管理

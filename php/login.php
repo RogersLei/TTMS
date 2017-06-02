@@ -14,9 +14,7 @@
     if(!$con){echo "<script>alert('error');</script>";}
     else{
         mysqli_set_charset($con,"utf8");
-
         $query = mysqli_query($con,$sql);
-        //        echo $sql;
         if($result =  mysqli_num_rows($query)){
             while($array = mysqli_fetch_array($query)){
                 session_start();
