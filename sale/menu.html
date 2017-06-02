@@ -75,8 +75,8 @@
           <div class="collapse panel-collapse" id="Plan">
             <div class="panel-body">
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="" target="iframe">显示计划列表</a></li>
-                <li><a href="">添加计划</a></li>
+                <li><a href="m/schedulelist.php" target="iframe">显示计划列表</a></li>
+                <li><a href="#addSchedule" data-toggle="modal">添加计划</a></li>
               </ul>
             </div>
           </div>
@@ -271,6 +271,55 @@
     </div>
   </div>
 </div>
+
+<!--添加计划-->
+<div class="modal fade" id="addSchedule">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">添加计划</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" method="post" action="">
+          <div class="form-group">
+            <label for="movnum" class="col-sm-2">影片编号</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="movnum">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="stunum" class="col-sm-2">影厅编号</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="stunum">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="startt" class="col-sm-2">上映时间</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="datetime-local" class="form-control" id="startt">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="endt" class="col-sm-2">结束时间</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="datetime-local" class="form-control" id="endt">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+        <a href="javascript:;" class="btn btn-primary" onclick="addSchedule()">Save changes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script src="../js/jquery1.11.3.min.js"></script>
 <script src="../js/bootstrap.js"></script>

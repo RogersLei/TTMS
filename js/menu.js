@@ -25,7 +25,7 @@ function exit() {
 }
 
 function reback() {
-  history.back(-1);
+  location.href = "studiolist.php" ;
 }
 
 function changeSeat(studioid,row,col) {
@@ -285,8 +285,87 @@ function delStudio(e) {
   });
 }
 
+//计划管理
+$('#UpdateSchedule').on('show.bs.modal', function (event) {
+  var a = $(event.relatedTarget);
+  //可以用此方式获取该行的标识，用于修改
+  var schnum = $.trim(a.parent().prevAll()[4].innerHTML); //从后往前
+  var movnum = $.trim(a.parent().prevAll()[3].innerHTML);
+  var stunum = $.trim(a.parent().prevAll()[2].innerHTML);
+  var startt = $.trim(a.parent().prevAll()[1].innerHTML);
+  var endt = $.trim(a.parent().prevAll()[0].innerHTML);
+  var s = formatIn(startt);
+  var e = formatIn(endt);
+  modal = $(this);
+  modal.find("#schnum").val(schnum);
+  modal.find("#movnum").val(movnum);
+  modal.find("#stunum").val(stunum);
+  modal.find("#startt").val(s);
+  modal.find("#endt").val(e);
+});
 
-//座位管理
-// $('#CheckSeat').modal({
-//   remote:"../sale.php"
-// });
+function updateSchedule() {
+  var schnum = $("#schnum").val();
+  var movnum = $("#movnum").val();
+  var stunum = $("#stunum").val();
+  var startt = $("#startt").val();
+  var endt = $("#endt").val();
+  var operation = "update";
+  //console.log(startt);
+  startt = formatOut(startt);
+  endt = formatOut(endt);
+  var data = {
+    "schnum":schnum,
+    "movnum":movnum,
+    "stunum":stunum,
+    "startt":startt,
+    "endt":endt,
+    "operation":operation
+  };
+  $.post("schedule.php",data,function () {
+
+  });
+}
+
+function delSchedule() {
+  
+}
+
+function addSchedule() {
+
+}
+
+//时间格式处理
+function formatIn(time) {
+  var ymd = time.split(' ')[0];
+  var hms = time.split(' ')[1];
+  var nymd = ymd.replace(/\//g,"-");
+  var nhms = hms.replace(/\//g,":");
+  var ntime = "";
+  if(isChrome()){
+    ntime = nymd+"T"+nhms;
+    //console.log(ntime);
+  }
+  else {
+    ntime = nymd + " " + nhms;
+    //console.log(ntime);
+  }
+  return ntime;
+}
+
+function formatOut(time) {
+
+  if(isChrome()){
+    time = time.replace(/T/g,' ');
+  }
+
+  return time;
+}
+//判断浏览器
+function isChrome() {
+  var userAgent = navigator.userAgent;
+  if(userAgent.indexOf("Chrome")>-1){
+    return true;
+  }
+  return false;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+      <script src=""></script><!--html5shiv-->
+  <script src=""></script><!--respond-->
+  <![endif]-->
+
+</head>
+<body class="text-center">
+<table class="table table-bordered table-hover table-striped">
+  <tr class="">
+    <th class="col-xs-offset-3 col-sm-2 hidden-xs text-center">计划编号</th>
+    <th class="col-xs-offset-3 col-sm-2 text-center">影片编号</th>
+    <th class="col-xs-offset-3 col-sm-2 text-center">影厅编号</th>
+    <th class="col-xs-offset-3 col-sm-2 hidden-xs text-center">上映时间</th>
+    <th class="col-xs-offset-3 col-sm-2 hidden-xs text-center">结束时间</th>
+    <th class="col-xs-offset-3 col-sm-2 text-center">操作</th>
+  </tr>
+  <!--PHP foreach循环实现-->
+  <?php for($i=$start_index;$i<=$end_index;$i++): ?>
+  <tr>
+    <td class="col-xs-offset-3 col-sm-1 hidden-xs">
+      <?php echo $Schedulelist[$i]['Schedule_ID'];?>
+    </td>
+    <td class="col-xs-offset-3 col-sm-2">
+      <?php echo $Schedulelist[$i]['Movie_Id'];?>
+    </td>
+    <td class="col-xs-offset-3 col-sm-2">
+      <?php echo $Schedulelist[$i]['Studio_ID'];?>
+    </td>
+    <td class="col-xs-offset-3 col-sm-2 hidden-xs">
+      <?php echo $Schedulelist[$i]['Start_Time'];?>
+    </td>
+    <td class="col-xs-offset-3 col-sm-2 hidden-xs">
+      <?php echo $Schedulelist[$i]['End_Time'];?>
+    </td>
+    <td class="col-xs-offset-3 col-sm-3">
+      <a href="#UpdateSchedule" class="btn btn-warning" data-toggle="modal">修改</a>
+      <a href="javascript:void(0);" class="btn btn-danger" onclick="delSchedule(this)">删除</a>
+    </td>
+  </tr>
+  <?php endfor ?>
+</table>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="Schedulelist.php?page=<?=$pre_page ?>" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <?php for($j=1;$j<$total_page+1;$j++):?>
+    <li><a href="Schedulelist.php?page=<?=$j ?>"><?=$j ?></a></li>
+    <?php endfor ?>
+    <li>
+      <a href="Schedulelist.php?page=<?=$next_page ?>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div class="modal fade" id="UpdateSchedule">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">修改计划</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" method="post" action="">
+          <div class="form-group">
+            <label for="schnum" class="col-sm-2">计划编号</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="schnum" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="movnum" class="col-sm-2">影片编号</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="movnum">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="stunum" class="col-sm-2">影厅编号</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="stunum">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="startt" class="col-sm-2">上映时间</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="datetime-local" class="form-control" id="startt">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="endt" class="col-sm-2">结束时间</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="datetime-local" class="form-control" id="endt">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+        <a href="javascript:;" class="btn btn-primary" onclick="updateSchedule()">Save changes</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../js/jquery1.11.3.min.js"></script>
+<script src="../../js/bootstrap.js"></script>
+<script src="../../js/menu.js"></script>
+</body>
+</html>

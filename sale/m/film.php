@@ -27,7 +27,7 @@
     //更改film
     else if($operation=="update"){
         $filmnum = $_POST['filmnum'];
-        $sql = "update movie set Movie_Name='".$filmname."',Movie_Time='".$filmtime."',Movie_Type='".$filmtype."' where Movie_ID=$filmnum ";
+        $sql = "update movie set Movie_Name='".$filmname."',Movie_Time='".$filmtime."',Movie_Type='".$filmtype."',Movie_Price='".$filmprice."' where Movie_ID=$filmnum ";
         mysqli_set_charset($con,"utf8");
         $result = mysqli_query($con,$sql);
         if(!$result){

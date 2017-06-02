@@ -6,7 +6,6 @@
     $row = isset($_GET['row'])?$_GET['row']:"";
     $col = isset($_GET['col'])?$_GET['col']:"";
     $id = isset($_GET['id'])?$_GET['id']:"";
-    //echo "<script>alert($id);</script>";
 //          判断数据表中是否存在
     $sql = "select * from Seat where Studio_ID=$id and Seat_Row=$row and Seat_Col=$col";
     $result1 = mysqli_query($con,$sql);
@@ -30,7 +29,6 @@
             }
         }
         else{
-
             if(isset($_GET['type'])){//修改
                 //echo "<script>alert($id+' '+'33');</script>";
                 //echo "<script>alert($id);</script>";
@@ -40,7 +38,6 @@
                 $stype = $type;
             }
             else{
-
                 $stype = "";
                 //echo "<script>alert('2');</script>";
                 if(isset($_GET['crow'])){  //是否点击

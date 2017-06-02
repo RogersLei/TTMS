@@ -1,107 +1,1414 @@
-/*==============================================================*/
-/* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2017/6/2 11:38:30                            */
-/*==============================================================*/
+/*
+Navicat MySQL Data Transfer
 
+Source Server         : NXL
+Source Server Version : 50617
+Source Host           : localhost:3306
+Source Database       : ttms
 
-drop table if exists movie;
+Target Server Type    : MYSQL
+Target Server Version : 50617
+File Encoding         : 65001
 
-drop table if exists schedule;
+Date: 2017-06-02 23:26:10
+*/
 
-drop table if exists seat;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists studio;
+-- ----------------------------
+-- Table structure for movie
+-- ----------------------------
+DROP TABLE IF EXISTS `movie`;
+CREATE TABLE `movie` (
+  `Movie_Id` int(3) NOT NULL AUTO_INCREMENT,
+  `Movie_Name` varchar(255) DEFAULT NULL,
+  `Movie_Time` varchar(255) DEFAULT NULL,
+  `Movie_Type` varchar(255) DEFAULT NULL,
+  `Movie_Price` float(4,2) DEFAULT NULL,
+  `Movie_Img` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Movie_Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
-drop table if exists ticket;
+-- ----------------------------
+-- Records of movie
+-- ----------------------------
+INSERT INTO `movie` VALUES ('1', '加勒比海盗5：死无对证', '126', '动作片', '38.80', null);
+INSERT INTO `movie` VALUES ('2', '神奇女侠', '142', '动作片', '22.90', null);
+INSERT INTO `movie` VALUES ('3', '摔跤吧！爸爸', '140', '喜剧片', '29.99', null);
+INSERT INTO `movie` VALUES ('4', '荡寇风云', '129', '战争片', '48.88', null);
+INSERT INTO `movie` VALUES ('5', '新木乃伊', '106', '奇幻，冒险', '29.00', null);
+INSERT INTO `movie` VALUES ('6', '银河护卫队2', '136', '科幻，冒险', '38.00', null);
+INSERT INTO `movie` VALUES ('7', '速度与激情8', '136', '犯罪，动作', '38.90', null);
+INSERT INTO `movie` VALUES ('8', '吃吃的爱', '95', '爱情', '28.00', null);
 
-drop table if exists user;
+-- ----------------------------
+-- Table structure for schedule
+-- ----------------------------
+DROP TABLE IF EXISTS `schedule`;
+CREATE TABLE `schedule` (
+  `Schedule_ID` int(3) NOT NULL AUTO_INCREMENT,
+  `Movie_Id` int(3) DEFAULT NULL,
+  `Studio_ID` int(3) DEFAULT NULL,
+  `Start_Time` varchar(100) DEFAULT NULL,
+  `End_Time` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`Schedule_ID`),
+  KEY `FK_MOVIE_SCHE` (`Movie_Id`),
+  KEY `FK_SCHE_STUDIO` (`Studio_ID`),
+  CONSTRAINT `FK_SCHE_STUDIO` FOREIGN KEY (`Studio_ID`) REFERENCES `studio` (`Studio_ID`),
+  CONSTRAINT `FK_MOVIE_SCHE` FOREIGN KEY (`Movie_Id`) REFERENCES `movie` (`Movie_Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-/*==============================================================*/
-/* Table: movie                                                 */
-/*==============================================================*/
-create table movie
-(
-   Movie_Id          int(3)  NOT NULL AUTO_INCREMENT,
-   Movie_Name           varchar(255),
-   Movie_Time           varchar(255),
-   Movie_Type           varchar(255),
-   Movie_Price          float(4,2),
-   Movie_Img            varchar(255),
-   primary key (Movie_Id)
-);
+-- ----------------------------
+-- Records of schedule
+-- ----------------------------
+INSERT INTO `schedule` VALUES ('1', '1', '2', '2017/06/03 17:00', '2017/06/03 19:06');
 
-/*==============================================================*/
-/* Table: schedule                                              */
-/*==============================================================*/
-create table schedule
-(
-   Schedule_ID          int(3)   NOT NULL AUTO_INCREMENT,
-   Movie_Id             int(3),
-   Studio_ID            int(3),
-   Start_Time           varchar(100),
-   End_Time             varchar(100),
-   primary key (Schedule_ID)
-);
+-- ----------------------------
+-- Table structure for seat
+-- ----------------------------
+DROP TABLE IF EXISTS `seat`;
+CREATE TABLE `seat` (
+  `Seat_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Studio_ID` int(3) DEFAULT NULL,
+  `Seat_Row` int(11) DEFAULT NULL,
+  `Seat_Col` int(11) DEFAULT NULL,
+  `Seat_Status` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`Seat_ID`),
+  KEY `FK_STUDIO_SEAT` (`Studio_ID`),
+  CONSTRAINT `FK_STUDIO_SEAT` FOREIGN KEY (`Studio_ID`) REFERENCES `studio` (`Studio_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3321 DEFAULT CHARSET=utf8;
 
-/*==============================================================*/
-/* Table: seat                                                  */
-/*==============================================================*/
-create table seat
-(
-   Seat_ID              int(11)  AUTO_INCREMENT,
-   Studio_ID          int(3),
-   Seat_Row             int,
-   Seat_Col             int,
-   Seat_Status          varchar(50),
-   primary key (Seat_ID)
-);
+-- ----------------------------
+-- Records of seat
+-- ----------------------------
+INSERT INTO `seat` VALUES ('2057', '1', '1', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2058', '1', '1', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2059', '1', '1', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2060', '1', '1', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2061', '1', '1', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2062', '1', '1', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2063', '1', '1', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2064', '1', '1', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2065', '1', '1', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2066', '1', '1', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2067', '1', '1', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2068', '1', '1', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2069', '1', '1', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2070', '1', '2', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2071', '1', '2', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2072', '1', '2', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2073', '1', '2', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2074', '1', '2', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2075', '1', '2', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2076', '1', '2', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2077', '1', '2', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2078', '1', '2', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2079', '1', '2', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2080', '1', '2', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2081', '1', '2', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2082', '1', '2', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2083', '1', '3', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2084', '1', '3', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2085', '1', '3', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2086', '1', '3', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2087', '1', '3', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2088', '1', '3', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2089', '1', '3', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2090', '1', '3', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2091', '1', '3', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2092', '1', '3', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2093', '1', '3', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2094', '1', '3', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2095', '1', '3', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2096', '1', '4', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2097', '1', '4', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2098', '1', '4', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2099', '1', '4', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2100', '1', '4', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2101', '1', '4', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2102', '1', '4', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2103', '1', '4', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2104', '1', '4', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2105', '1', '4', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2106', '1', '4', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2107', '1', '4', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2108', '1', '4', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2109', '1', '5', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2110', '1', '5', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2111', '1', '5', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2112', '1', '5', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2113', '1', '5', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2114', '1', '5', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2115', '1', '5', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2116', '1', '5', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2117', '1', '5', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2118', '1', '5', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2119', '1', '5', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2120', '1', '5', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2121', '1', '5', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2122', '1', '6', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2123', '1', '6', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2124', '1', '6', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2125', '1', '6', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2126', '1', '6', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2127', '1', '6', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2128', '1', '6', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2129', '1', '6', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2130', '1', '6', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2131', '1', '6', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2132', '1', '6', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2133', '1', '6', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2134', '1', '6', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2135', '1', '7', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2136', '1', '7', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2137', '1', '7', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2138', '1', '7', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2139', '1', '7', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2140', '1', '7', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2141', '1', '7', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2142', '1', '7', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2143', '1', '7', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2144', '1', '7', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2145', '1', '7', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2146', '1', '7', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2147', '1', '7', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2148', '1', '8', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2149', '1', '8', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2150', '1', '8', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2151', '1', '8', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2152', '1', '8', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2153', '1', '8', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2154', '1', '8', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2155', '1', '8', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2156', '1', '8', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2157', '1', '8', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2158', '1', '8', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2159', '1', '8', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2160', '1', '8', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2161', '1', '9', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2162', '1', '9', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2163', '1', '9', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2164', '1', '9', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2165', '1', '9', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2166', '1', '9', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2167', '1', '9', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2168', '1', '9', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2169', '1', '9', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2170', '1', '9', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2171', '1', '9', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2172', '1', '9', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2173', '1', '9', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2174', '1', '10', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2175', '1', '10', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2176', '1', '10', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2177', '1', '10', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2178', '1', '10', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2179', '1', '10', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2180', '1', '10', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2181', '1', '10', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2182', '1', '10', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2183', '1', '10', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2184', '1', '10', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2185', '1', '10', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2186', '1', '10', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2187', '1', '11', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2188', '1', '11', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2189', '1', '11', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2190', '1', '11', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2191', '1', '11', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2192', '1', '11', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2193', '1', '11', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2194', '1', '11', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2195', '1', '11', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2196', '1', '11', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2197', '1', '11', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2198', '1', '11', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2199', '1', '11', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2200', '1', '12', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2201', '1', '12', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2202', '1', '12', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2203', '1', '12', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2204', '1', '12', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2205', '1', '12', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2206', '1', '12', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2207', '1', '12', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2208', '1', '12', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2209', '1', '12', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2210', '1', '12', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2211', '1', '12', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2212', '1', '12', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2213', '1', '13', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2214', '1', '13', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2215', '1', '13', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2216', '1', '13', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2217', '1', '13', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2218', '1', '13', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2219', '1', '13', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2220', '1', '13', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2221', '1', '13', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2222', '1', '13', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2223', '1', '13', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2224', '1', '13', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2225', '1', '13', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2226', '2', '1', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2227', '2', '1', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2228', '2', '1', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2229', '2', '1', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2230', '2', '1', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2231', '2', '1', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2232', '2', '1', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2233', '2', '1', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2234', '2', '1', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2235', '2', '1', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2236', '2', '1', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2237', '2', '1', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2238', '2', '1', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2239', '2', '1', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2240', '2', '1', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2241', '2', '1', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2242', '2', '1', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2243', '2', '2', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2244', '2', '2', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2245', '2', '2', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2246', '2', '2', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2247', '2', '2', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2248', '2', '2', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2249', '2', '2', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2250', '2', '2', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2251', '2', '2', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2252', '2', '2', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2253', '2', '2', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2254', '2', '2', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2255', '2', '2', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2256', '2', '2', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2257', '2', '2', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2258', '2', '2', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2259', '2', '2', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2260', '2', '3', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2261', '2', '3', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2262', '2', '3', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2263', '2', '3', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2264', '2', '3', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2265', '2', '3', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2266', '2', '3', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2267', '2', '3', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2268', '2', '3', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2269', '2', '3', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2270', '2', '3', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2271', '2', '3', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2272', '2', '3', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2273', '2', '3', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2274', '2', '3', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2275', '2', '3', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2276', '2', '3', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2277', '2', '4', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2278', '2', '4', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2279', '2', '4', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2280', '2', '4', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2281', '2', '4', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2282', '2', '4', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2283', '2', '4', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2284', '2', '4', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2285', '2', '4', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2286', '2', '4', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2287', '2', '4', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2288', '2', '4', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2289', '2', '4', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2290', '2', '4', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2291', '2', '4', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2292', '2', '4', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2293', '2', '4', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2294', '2', '5', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2295', '2', '5', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2296', '2', '5', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2297', '2', '5', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2298', '2', '5', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2299', '2', '5', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2300', '2', '5', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2301', '2', '5', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2302', '2', '5', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2303', '2', '5', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2304', '2', '5', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2305', '2', '5', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2306', '2', '5', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2307', '2', '5', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2308', '2', '5', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2309', '2', '5', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2310', '2', '5', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2311', '2', '6', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2312', '2', '6', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2313', '2', '6', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2314', '2', '6', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2315', '2', '6', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2316', '2', '6', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2317', '2', '6', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2318', '2', '6', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2319', '2', '6', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2320', '2', '6', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2321', '2', '6', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2322', '2', '6', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2323', '2', '6', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2324', '2', '6', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2325', '2', '6', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2326', '2', '6', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2327', '2', '6', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2328', '2', '7', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2329', '2', '7', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2330', '2', '7', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2331', '2', '7', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2332', '2', '7', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2333', '2', '7', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2334', '2', '7', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2335', '2', '7', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2336', '2', '7', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2337', '2', '7', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2338', '2', '7', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2339', '2', '7', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2340', '2', '7', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2341', '2', '7', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2342', '2', '7', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2343', '2', '7', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2344', '2', '7', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2345', '2', '8', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2346', '2', '8', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2347', '2', '8', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2348', '2', '8', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2349', '2', '8', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2350', '2', '8', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2351', '2', '8', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2352', '2', '8', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2353', '2', '8', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2354', '2', '8', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2355', '2', '8', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2356', '2', '8', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2357', '2', '8', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2358', '2', '8', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2359', '2', '8', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2360', '2', '8', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2361', '2', '8', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2362', '2', '9', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2363', '2', '9', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2364', '2', '9', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2365', '2', '9', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2366', '2', '9', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2367', '2', '9', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2368', '2', '9', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2369', '2', '9', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2370', '2', '9', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2371', '2', '9', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2372', '2', '9', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2373', '2', '9', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2374', '2', '9', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2375', '2', '9', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2376', '2', '9', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2377', '2', '9', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2378', '2', '9', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2379', '2', '10', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2380', '2', '10', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2381', '2', '10', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2382', '2', '10', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2383', '2', '10', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2384', '2', '10', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2385', '2', '10', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2386', '2', '10', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2387', '2', '10', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2388', '2', '10', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2389', '2', '10', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2390', '2', '10', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2391', '2', '10', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2392', '2', '10', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2393', '2', '10', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2394', '2', '10', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2395', '2', '10', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2396', '2', '11', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2397', '2', '11', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2398', '2', '11', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2399', '2', '11', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2400', '2', '11', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2401', '2', '11', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2402', '2', '11', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2403', '2', '11', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2404', '2', '11', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2405', '2', '11', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2406', '2', '11', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2407', '2', '11', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2408', '2', '11', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2409', '2', '11', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2410', '2', '11', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2411', '2', '11', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2412', '2', '11', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2413', '2', '12', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2414', '2', '12', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2415', '2', '12', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2416', '2', '12', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2417', '2', '12', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2418', '2', '12', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2419', '2', '12', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2420', '2', '12', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2421', '2', '12', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2422', '2', '12', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2423', '2', '12', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2424', '2', '12', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2425', '2', '12', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2426', '2', '12', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2427', '2', '12', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2428', '2', '12', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2429', '2', '12', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2430', '2', '13', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2431', '2', '13', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2432', '2', '13', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2433', '2', '13', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2434', '2', '13', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2435', '2', '13', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2436', '2', '13', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2437', '2', '13', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2438', '2', '13', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2439', '2', '13', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2440', '2', '13', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2441', '2', '13', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2442', '2', '13', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2443', '2', '13', '14', '未锁定');
+INSERT INTO `seat` VALUES ('2444', '2', '13', '15', '未锁定');
+INSERT INTO `seat` VALUES ('2445', '2', '13', '16', '未锁定');
+INSERT INTO `seat` VALUES ('2446', '2', '13', '17', '未锁定');
+INSERT INTO `seat` VALUES ('2447', '3', '1', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2448', '3', '1', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2449', '3', '1', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2450', '3', '1', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2451', '3', '1', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2452', '3', '1', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2453', '3', '1', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2454', '3', '1', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2455', '3', '1', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2456', '3', '1', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2457', '3', '2', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2458', '3', '2', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2459', '3', '2', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2460', '3', '2', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2461', '3', '2', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2462', '3', '2', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2463', '3', '2', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2464', '3', '2', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2465', '3', '2', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2466', '3', '2', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2467', '3', '3', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2468', '3', '3', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2469', '3', '3', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2470', '3', '3', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2471', '3', '3', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2472', '3', '3', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2473', '3', '3', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2474', '3', '3', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2475', '3', '3', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2476', '3', '3', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2477', '3', '4', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2478', '3', '4', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2479', '3', '4', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2480', '3', '4', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2481', '3', '4', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2482', '3', '4', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2483', '3', '4', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2484', '3', '4', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2485', '3', '4', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2486', '3', '4', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2487', '3', '5', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2488', '3', '5', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2489', '3', '5', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2490', '3', '5', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2491', '3', '5', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2492', '3', '5', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2493', '3', '5', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2494', '3', '5', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2495', '3', '5', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2496', '3', '5', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2497', '3', '6', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2498', '3', '6', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2499', '3', '6', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2500', '3', '6', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2501', '3', '6', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2502', '3', '6', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2503', '3', '6', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2504', '3', '6', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2505', '3', '6', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2506', '3', '6', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2507', '3', '7', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2508', '3', '7', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2509', '3', '7', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2510', '3', '7', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2511', '3', '7', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2512', '3', '7', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2513', '3', '7', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2514', '3', '7', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2515', '3', '7', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2516', '3', '7', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2517', '3', '8', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2518', '3', '8', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2519', '3', '8', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2520', '3', '8', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2521', '3', '8', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2522', '3', '8', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2523', '3', '8', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2524', '3', '8', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2525', '3', '8', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2526', '3', '8', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2527', '3', '9', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2528', '3', '9', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2529', '3', '9', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2530', '3', '9', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2531', '3', '9', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2532', '3', '9', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2533', '3', '9', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2534', '3', '9', '8', '已损坏');
+INSERT INTO `seat` VALUES ('2535', '3', '9', '9', '已损坏');
+INSERT INTO `seat` VALUES ('2536', '3', '9', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2537', '3', '10', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2538', '3', '10', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2539', '3', '10', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2540', '3', '10', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2541', '3', '10', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2542', '3', '10', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2543', '3', '10', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2544', '3', '10', '8', '已损坏');
+INSERT INTO `seat` VALUES ('2545', '3', '10', '9', '已损坏');
+INSERT INTO `seat` VALUES ('2546', '3', '10', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2547', '4', '1', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2548', '4', '1', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2549', '4', '1', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2550', '4', '1', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2551', '4', '1', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2552', '4', '1', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2553', '4', '1', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2554', '4', '1', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2555', '4', '1', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2556', '4', '1', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2557', '4', '1', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2558', '4', '1', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2559', '4', '2', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2560', '4', '2', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2561', '4', '2', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2562', '4', '2', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2563', '4', '2', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2564', '4', '2', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2565', '4', '2', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2566', '4', '2', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2567', '4', '2', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2568', '4', '2', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2569', '4', '2', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2570', '4', '2', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2571', '4', '3', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2572', '4', '3', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2573', '4', '3', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2574', '4', '3', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2575', '4', '3', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2576', '4', '3', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2577', '4', '3', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2578', '4', '3', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2579', '4', '3', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2580', '4', '3', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2581', '4', '3', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2582', '4', '3', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2583', '4', '4', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2584', '4', '4', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2585', '4', '4', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2586', '4', '4', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2587', '4', '4', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2588', '4', '4', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2589', '4', '4', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2590', '4', '4', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2591', '4', '4', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2592', '4', '4', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2593', '4', '4', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2594', '4', '4', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2595', '4', '5', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2596', '4', '5', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2597', '4', '5', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2598', '4', '5', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2599', '4', '5', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2600', '4', '5', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2601', '4', '5', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2602', '4', '5', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2603', '4', '5', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2604', '4', '5', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2605', '4', '5', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2606', '4', '5', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2607', '4', '6', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2608', '4', '6', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2609', '4', '6', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2610', '4', '6', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2611', '4', '6', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2612', '4', '6', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2613', '4', '6', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2614', '4', '6', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2615', '4', '6', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2616', '4', '6', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2617', '4', '6', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2618', '4', '6', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2619', '4', '7', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2620', '4', '7', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2621', '4', '7', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2622', '4', '7', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2623', '4', '7', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2624', '4', '7', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2625', '4', '7', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2626', '4', '7', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2627', '4', '7', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2628', '4', '7', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2629', '4', '7', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2630', '4', '7', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2631', '4', '8', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2632', '4', '8', '2', '已锁定');
+INSERT INTO `seat` VALUES ('2633', '4', '8', '3', '已交易');
+INSERT INTO `seat` VALUES ('2634', '4', '8', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2635', '4', '8', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2636', '4', '8', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2637', '4', '8', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2638', '4', '8', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2639', '4', '8', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2640', '4', '8', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2641', '4', '8', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2642', '4', '8', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2643', '4', '9', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2644', '4', '9', '2', '已锁定');
+INSERT INTO `seat` VALUES ('2645', '4', '9', '3', '已交易');
+INSERT INTO `seat` VALUES ('2646', '4', '9', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2647', '4', '9', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2648', '4', '9', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2649', '4', '9', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2650', '4', '9', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2651', '4', '9', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2652', '4', '9', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2653', '4', '9', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2654', '4', '9', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2655', '4', '10', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2656', '4', '10', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2657', '4', '10', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2658', '4', '10', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2659', '4', '10', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2660', '4', '10', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2661', '4', '10', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2662', '4', '10', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2663', '4', '10', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2664', '4', '10', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2665', '4', '10', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2666', '4', '10', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2667', '5', '1', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2668', '5', '1', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2669', '5', '1', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2670', '5', '1', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2671', '5', '1', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2672', '5', '1', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2673', '5', '1', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2674', '5', '1', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2675', '5', '1', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2676', '5', '1', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2677', '5', '2', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2678', '5', '2', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2679', '5', '2', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2680', '5', '2', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2681', '5', '2', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2682', '5', '2', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2683', '5', '2', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2684', '5', '2', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2685', '5', '2', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2686', '5', '2', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2687', '5', '3', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2688', '5', '3', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2689', '5', '3', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2690', '5', '3', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2691', '5', '3', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2692', '5', '3', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2693', '5', '3', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2694', '5', '3', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2695', '5', '3', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2696', '5', '3', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2697', '5', '4', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2698', '5', '4', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2699', '5', '4', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2700', '5', '4', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2701', '5', '4', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2702', '5', '4', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2703', '5', '4', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2704', '5', '4', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2705', '5', '4', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2706', '5', '4', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2707', '5', '5', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2708', '5', '5', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2709', '5', '5', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2710', '5', '5', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2711', '5', '5', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2712', '5', '5', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2713', '5', '5', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2714', '5', '5', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2715', '5', '5', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2716', '5', '5', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2717', '5', '6', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2718', '5', '6', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2719', '5', '6', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2720', '5', '6', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2721', '5', '6', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2722', '5', '6', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2723', '5', '6', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2724', '5', '6', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2725', '5', '6', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2726', '5', '6', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2727', '5', '7', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2728', '5', '7', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2729', '5', '7', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2730', '5', '7', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2731', '5', '7', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2732', '5', '7', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2733', '5', '7', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2734', '5', '7', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2735', '5', '7', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2736', '5', '7', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2737', '5', '8', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2738', '5', '8', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2739', '5', '8', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2740', '5', '8', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2741', '5', '8', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2742', '5', '8', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2743', '5', '8', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2744', '5', '8', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2745', '5', '8', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2746', '5', '8', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2747', '5', '9', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2748', '5', '9', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2749', '5', '9', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2750', '5', '9', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2751', '5', '9', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2752', '5', '9', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2753', '5', '9', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2754', '5', '9', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2755', '5', '9', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2756', '5', '9', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2757', '5', '10', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2758', '5', '10', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2759', '5', '10', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2760', '5', '10', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2761', '5', '10', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2762', '5', '10', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2763', '5', '10', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2764', '5', '10', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2765', '5', '10', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2766', '5', '10', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2767', '5', '11', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2768', '5', '11', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2769', '5', '11', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2770', '5', '11', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2771', '5', '11', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2772', '5', '11', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2773', '5', '11', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2774', '5', '11', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2775', '5', '11', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2776', '5', '11', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2777', '5', '12', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2778', '5', '12', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2779', '5', '12', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2780', '5', '12', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2781', '5', '12', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2782', '5', '12', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2783', '5', '12', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2784', '5', '12', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2785', '5', '12', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2786', '5', '12', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2787', '5', '13', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2788', '5', '13', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2789', '5', '13', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2790', '5', '13', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2791', '5', '13', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2792', '5', '13', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2793', '5', '13', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2794', '5', '13', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2795', '5', '13', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2796', '5', '13', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2797', '6', '1', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2798', '6', '1', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2799', '6', '1', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2800', '6', '1', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2801', '6', '1', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2802', '6', '1', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2803', '6', '1', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2804', '6', '1', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2805', '6', '1', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2806', '6', '1', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2807', '6', '2', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2808', '6', '2', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2809', '6', '2', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2810', '6', '2', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2811', '6', '2', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2812', '6', '2', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2813', '6', '2', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2814', '6', '2', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2815', '6', '2', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2816', '6', '2', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2817', '6', '3', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2818', '6', '3', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2819', '6', '3', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2820', '6', '3', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2821', '6', '3', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2822', '6', '3', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2823', '6', '3', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2824', '6', '3', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2825', '6', '3', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2826', '6', '3', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2827', '6', '4', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2828', '6', '4', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2829', '6', '4', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2830', '6', '4', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2831', '6', '4', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2832', '6', '4', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2833', '6', '4', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2834', '6', '4', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2835', '6', '4', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2836', '6', '4', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2837', '6', '5', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2838', '6', '5', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2839', '6', '5', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2840', '6', '5', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2841', '6', '5', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2842', '6', '5', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2843', '6', '5', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2844', '6', '5', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2845', '6', '5', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2846', '6', '5', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2847', '6', '6', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2848', '6', '6', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2849', '6', '6', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2850', '6', '6', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2851', '6', '6', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2852', '6', '6', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2853', '6', '6', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2854', '6', '6', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2855', '6', '6', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2856', '6', '6', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2857', '6', '7', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2858', '6', '7', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2859', '6', '7', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2860', '6', '7', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2861', '6', '7', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2862', '6', '7', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2863', '6', '7', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2864', '6', '7', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2865', '6', '7', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2866', '6', '7', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2867', '6', '8', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2868', '6', '8', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2869', '6', '8', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2870', '6', '8', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2871', '6', '8', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2872', '6', '8', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2873', '6', '8', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2874', '6', '8', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2875', '6', '8', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2876', '6', '8', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2877', '6', '9', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2878', '6', '9', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2879', '6', '9', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2880', '6', '9', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2881', '6', '9', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2882', '6', '9', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2883', '6', '9', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2884', '6', '9', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2885', '6', '9', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2886', '6', '9', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2887', '6', '10', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2888', '6', '10', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2889', '6', '10', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2890', '6', '10', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2891', '6', '10', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2892', '6', '10', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2893', '6', '10', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2894', '6', '10', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2895', '6', '10', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2896', '6', '10', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2897', '6', '11', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2898', '6', '11', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2899', '6', '11', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2900', '6', '11', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2901', '6', '11', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2902', '6', '11', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2903', '6', '11', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2904', '6', '11', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2905', '6', '11', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2906', '6', '11', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2907', '6', '12', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2908', '6', '12', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2909', '6', '12', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2910', '6', '12', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2911', '6', '12', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2912', '6', '12', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2913', '6', '12', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2914', '6', '12', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2915', '6', '12', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2916', '6', '12', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2917', '6', '13', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2918', '6', '13', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2919', '6', '13', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2920', '6', '13', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2921', '6', '13', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2922', '6', '13', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2923', '6', '13', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2924', '6', '13', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2925', '6', '13', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2926', '6', '13', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2927', '7', '1', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2928', '7', '1', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2929', '7', '1', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2930', '7', '1', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2931', '7', '1', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2932', '7', '1', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2933', '7', '1', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2934', '7', '1', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2935', '7', '1', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2936', '7', '1', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2937', '7', '1', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2938', '7', '1', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2939', '7', '1', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2940', '7', '2', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2941', '7', '2', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2942', '7', '2', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2943', '7', '2', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2944', '7', '2', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2945', '7', '2', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2946', '7', '2', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2947', '7', '2', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2948', '7', '2', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2949', '7', '2', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2950', '7', '2', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2951', '7', '2', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2952', '7', '2', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2953', '7', '3', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2954', '7', '3', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2955', '7', '3', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2956', '7', '3', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2957', '7', '3', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2958', '7', '3', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2959', '7', '3', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2960', '7', '3', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2961', '7', '3', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2962', '7', '3', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2963', '7', '3', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2964', '7', '3', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2965', '7', '3', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2966', '7', '4', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2967', '7', '4', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2968', '7', '4', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2969', '7', '4', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2970', '7', '4', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2971', '7', '4', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2972', '7', '4', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2973', '7', '4', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2974', '7', '4', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2975', '7', '4', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2976', '7', '4', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2977', '7', '4', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2978', '7', '4', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2979', '7', '5', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2980', '7', '5', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2981', '7', '5', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2982', '7', '5', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2983', '7', '5', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2984', '7', '5', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2985', '7', '5', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2986', '7', '5', '8', '未锁定');
+INSERT INTO `seat` VALUES ('2987', '7', '5', '9', '未锁定');
+INSERT INTO `seat` VALUES ('2988', '7', '5', '10', '未锁定');
+INSERT INTO `seat` VALUES ('2989', '7', '5', '11', '未锁定');
+INSERT INTO `seat` VALUES ('2990', '7', '5', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2991', '7', '5', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2992', '7', '6', '1', '未锁定');
+INSERT INTO `seat` VALUES ('2993', '7', '6', '2', '未锁定');
+INSERT INTO `seat` VALUES ('2994', '7', '6', '3', '未锁定');
+INSERT INTO `seat` VALUES ('2995', '7', '6', '4', '未锁定');
+INSERT INTO `seat` VALUES ('2996', '7', '6', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2997', '7', '6', '6', '未锁定');
+INSERT INTO `seat` VALUES ('2998', '7', '6', '7', '未锁定');
+INSERT INTO `seat` VALUES ('2999', '7', '6', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3000', '7', '6', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3001', '7', '6', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3002', '7', '6', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3003', '7', '6', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3004', '7', '6', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3005', '7', '7', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3006', '7', '7', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3007', '7', '7', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3008', '7', '7', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3009', '7', '7', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3010', '7', '7', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3011', '7', '7', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3012', '7', '7', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3013', '7', '7', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3014', '7', '7', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3015', '7', '7', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3016', '7', '7', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3017', '7', '7', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3018', '7', '8', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3019', '7', '8', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3020', '7', '8', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3021', '7', '8', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3022', '7', '8', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3023', '7', '8', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3024', '7', '8', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3025', '7', '8', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3026', '7', '8', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3027', '7', '8', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3028', '7', '8', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3029', '7', '8', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3030', '7', '8', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3031', '7', '9', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3032', '7', '9', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3033', '7', '9', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3034', '7', '9', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3035', '7', '9', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3036', '7', '9', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3037', '7', '9', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3038', '7', '9', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3039', '7', '9', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3040', '7', '9', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3041', '7', '9', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3042', '7', '9', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3043', '7', '9', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3044', '7', '10', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3045', '7', '10', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3046', '7', '10', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3047', '7', '10', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3048', '7', '10', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3049', '7', '10', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3050', '7', '10', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3051', '7', '10', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3052', '7', '10', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3053', '7', '10', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3054', '7', '10', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3055', '7', '10', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3056', '7', '10', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3057', '7', '11', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3058', '7', '11', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3059', '7', '11', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3060', '7', '11', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3061', '7', '11', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3062', '7', '11', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3063', '7', '11', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3064', '7', '11', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3065', '7', '11', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3066', '7', '11', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3067', '7', '11', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3068', '7', '11', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3069', '7', '11', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3070', '7', '12', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3071', '7', '12', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3072', '7', '12', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3073', '7', '12', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3074', '7', '12', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3075', '7', '12', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3076', '7', '12', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3077', '7', '12', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3078', '7', '12', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3079', '7', '12', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3080', '7', '12', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3081', '7', '12', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3082', '7', '12', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3083', '7', '13', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3084', '7', '13', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3085', '7', '13', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3086', '7', '13', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3087', '7', '13', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3088', '7', '13', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3089', '7', '13', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3090', '7', '13', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3091', '7', '13', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3092', '7', '13', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3093', '7', '13', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3094', '7', '13', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3095', '7', '13', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3096', '8', '1', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3097', '8', '1', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3098', '8', '1', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3099', '8', '1', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3100', '8', '1', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3101', '8', '1', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3102', '8', '1', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3103', '8', '1', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3104', '8', '1', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3105', '8', '1', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3106', '8', '1', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3107', '8', '1', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3108', '8', '1', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3109', '8', '1', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3110', '8', '1', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3111', '8', '2', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3112', '8', '2', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3113', '8', '2', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3114', '8', '2', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3115', '8', '2', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3116', '8', '2', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3117', '8', '2', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3118', '8', '2', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3119', '8', '2', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3120', '8', '2', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3121', '8', '2', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3122', '8', '2', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3123', '8', '2', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3124', '8', '2', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3125', '8', '2', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3126', '8', '3', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3127', '8', '3', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3128', '8', '3', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3129', '8', '3', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3130', '8', '3', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3131', '8', '3', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3132', '8', '3', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3133', '8', '3', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3134', '8', '3', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3135', '8', '3', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3136', '8', '3', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3137', '8', '3', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3138', '8', '3', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3139', '8', '3', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3140', '8', '3', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3141', '8', '4', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3142', '8', '4', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3143', '8', '4', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3144', '8', '4', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3145', '8', '4', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3146', '8', '4', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3147', '8', '4', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3148', '8', '4', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3149', '8', '4', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3150', '8', '4', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3151', '8', '4', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3152', '8', '4', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3153', '8', '4', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3154', '8', '4', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3155', '8', '4', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3156', '8', '5', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3157', '8', '5', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3158', '8', '5', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3159', '8', '5', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3160', '8', '5', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3161', '8', '5', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3162', '8', '5', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3163', '8', '5', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3164', '8', '5', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3165', '8', '5', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3166', '8', '5', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3167', '8', '5', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3168', '8', '5', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3169', '8', '5', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3170', '8', '5', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3171', '8', '6', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3172', '8', '6', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3173', '8', '6', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3174', '8', '6', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3175', '8', '6', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3176', '8', '6', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3177', '8', '6', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3178', '8', '6', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3179', '8', '6', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3180', '8', '6', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3181', '8', '6', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3182', '8', '6', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3183', '8', '6', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3184', '8', '6', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3185', '8', '6', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3186', '8', '7', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3187', '8', '7', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3188', '8', '7', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3189', '8', '7', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3190', '8', '7', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3191', '8', '7', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3192', '8', '7', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3193', '8', '7', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3194', '8', '7', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3195', '8', '7', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3196', '8', '7', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3197', '8', '7', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3198', '8', '7', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3199', '8', '7', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3200', '8', '7', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3201', '8', '8', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3202', '8', '8', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3203', '8', '8', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3204', '8', '8', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3205', '8', '8', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3206', '8', '8', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3207', '8', '8', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3208', '8', '8', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3209', '8', '8', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3210', '8', '8', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3211', '8', '8', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3212', '8', '8', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3213', '8', '8', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3214', '8', '8', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3215', '8', '8', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3216', '8', '9', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3217', '8', '9', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3218', '8', '9', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3219', '8', '9', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3220', '8', '9', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3221', '8', '9', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3222', '8', '9', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3223', '8', '9', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3224', '8', '9', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3225', '8', '9', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3226', '8', '9', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3227', '8', '9', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3228', '8', '9', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3229', '8', '9', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3230', '8', '9', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3231', '8', '10', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3232', '8', '10', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3233', '8', '10', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3234', '8', '10', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3235', '8', '10', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3236', '8', '10', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3237', '8', '10', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3238', '8', '10', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3239', '8', '10', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3240', '8', '10', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3241', '8', '10', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3242', '8', '10', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3243', '8', '10', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3244', '8', '10', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3245', '8', '10', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3246', '8', '11', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3247', '8', '11', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3248', '8', '11', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3249', '8', '11', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3250', '8', '11', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3251', '8', '11', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3252', '8', '11', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3253', '8', '11', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3254', '8', '11', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3255', '8', '11', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3256', '8', '11', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3257', '8', '11', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3258', '8', '11', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3259', '8', '11', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3260', '8', '11', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3261', '8', '12', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3262', '8', '12', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3263', '8', '12', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3264', '8', '12', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3265', '8', '12', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3266', '8', '12', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3267', '8', '12', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3268', '8', '12', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3269', '8', '12', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3270', '8', '12', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3271', '8', '12', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3272', '8', '12', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3273', '8', '12', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3274', '8', '12', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3275', '8', '12', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3276', '8', '13', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3277', '8', '13', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3278', '8', '13', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3279', '8', '13', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3280', '8', '13', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3281', '8', '13', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3282', '8', '13', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3283', '8', '13', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3284', '8', '13', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3285', '8', '13', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3286', '8', '13', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3287', '8', '13', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3288', '8', '13', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3289', '8', '13', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3290', '8', '13', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3291', '8', '14', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3292', '8', '14', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3293', '8', '14', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3294', '8', '14', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3295', '8', '14', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3296', '8', '14', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3297', '8', '14', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3298', '8', '14', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3299', '8', '14', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3300', '8', '14', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3301', '8', '14', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3302', '8', '14', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3303', '8', '14', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3304', '8', '14', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3305', '8', '14', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3306', '8', '15', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3307', '8', '15', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3308', '8', '15', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3309', '8', '15', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3310', '8', '15', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3311', '8', '15', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3312', '8', '15', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3313', '8', '15', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3314', '8', '15', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3315', '8', '15', '10', '未锁定');
+INSERT INTO `seat` VALUES ('3316', '8', '15', '11', '未锁定');
+INSERT INTO `seat` VALUES ('3317', '8', '15', '12', '未锁定');
+INSERT INTO `seat` VALUES ('3318', '8', '15', '13', '未锁定');
+INSERT INTO `seat` VALUES ('3319', '8', '15', '14', '未锁定');
+INSERT INTO `seat` VALUES ('3320', '8', '15', '15', '未锁定');
 
-/*==============================================================*/
-/* Table: studio                                                */
-/*==============================================================*/
-create table studio
-(
-   Studio_ID           int(3)   NOT NULL AUTO_INCREMENT,
-   Studio_Name          varchar(255),
-   Studio_Row           int,
-   Studio_Col           int,
-   primary key (Studio_ID)
-);
+-- ----------------------------
+-- Table structure for studio
+-- ----------------------------
+DROP TABLE IF EXISTS `studio`;
+CREATE TABLE `studio` (
+  `Studio_ID` int(3) NOT NULL AUTO_INCREMENT,
+  `Studio_Name` varchar(255) DEFAULT NULL,
+  `Studio_Row` int(11) DEFAULT NULL,
+  `Studio_Col` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Studio_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
-/*==============================================================*/
-/* Table: ticket                                                */
-/*==============================================================*/
-create table ticket
-(
-   Ticket_ID            int(6)  NOT NULL AUTO_INCREMENT,
-   Schedule_ID          int(3),
-   Seat_Col             int,
-   Seat_Row             int,
-   Ticket_Price         float(5,2),
-   Ticket_Status        varchar(100),
-   primary key (Ticket_ID)
-);
+-- ----------------------------
+-- Records of studio
+-- ----------------------------
+INSERT INTO `studio` VALUES ('1', '1号巨幕厅', '13', '13');
+INSERT INTO `studio` VALUES ('2', '激光MAX厅（大）', '13', '17');
+INSERT INTO `studio` VALUES ('3', '1厅', '10', '10');
+INSERT INTO `studio` VALUES ('4', '2厅', '10', '12');
+INSERT INTO `studio` VALUES ('5', '3厅', '13', '10');
+INSERT INTO `studio` VALUES ('6', '全景声厅', '13', '10');
+INSERT INTO `studio` VALUES ('7', '激光厅', '13', '13');
+INSERT INTO `studio` VALUES ('8', '全景声MAX厅（大）', '15', '15');
 
-/*==============================================================*/
-/* Table: user                                                  */
-/*==============================================================*/
-create table user
-(
-   User_ID            int(3) NOT NULL AUTO_INCREMENT,
-   User_Name            varchar(255),
-   User_Pwd             varchar(255),
-   User_Pwds            varchar(255),
-   User_Type            varchar(255),
-   primary key (User_ID)
-);
-alter table schedule add constraint FK_MOVIE_SCHE foreign key (Movie_Id)
-      references movie (Movie_Id) on delete restrict on update restrict;
+-- ----------------------------
+-- Table structure for ticket
+-- ----------------------------
+DROP TABLE IF EXISTS `ticket`;
+CREATE TABLE `ticket` (
+  `Ticket_ID` int(6) NOT NULL AUTO_INCREMENT,
+  `Schedule_ID` int(3) DEFAULT NULL,
+  `Seat_Col` int(11) DEFAULT NULL,
+  `Seat_Row` int(11) DEFAULT NULL,
+  `Ticket_Price` float(5,2) DEFAULT NULL,
+  `Ticket_Status` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`Ticket_ID`),
+  KEY `FK_SCHE_TICKET` (`Schedule_ID`),
+  CONSTRAINT `FK_SCHE_TICKET` FOREIGN KEY (`Schedule_ID`) REFERENCES `schedule` (`Schedule_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-alter table schedule add constraint FK_SCHE_STUDIO foreign key (Studio_ID)
-      references studio (Studio_ID) on delete restrict on update restrict;
+-- ----------------------------
+-- Records of ticket
+-- ----------------------------
 
-alter table seat add constraint FK_STUDIO_SEAT foreign key (Studio_ID)
-      references studio (Studio_ID) on delete restrict on update restrict;
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `User_ID` int(3) NOT NULL AUTO_INCREMENT,
+  `User_Name` varchar(255) DEFAULT NULL,
+  `User_Pwd` varchar(255) DEFAULT NULL,
+  `User_Pwds` varchar(255) DEFAULT NULL,
+  `User_Type` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`User_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
-alter table ticket add constraint FK_SCHE_TICKET foreign key (Schedule_ID)
-      references schedule (Schedule_ID) on delete restrict on update restrict;
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('1', '王二狗', '1256159', '77819e5b77d94ca6e65962cfab3c06c7', '售票员');
+INSERT INTO `user` VALUES ('2', '宁鑫磊', '12345678', null, '管理员');
+INSERT INTO `user` VALUES ('3', '惠国强', '123456', 'e10adc3949ba59abbe56e057f20f883e', '管理员');
+INSERT INTO `user` VALUES ('4', '李晨冬', '04143016', 'c22e0778f36841df151559bb93c744c5', '管理员');
+INSERT INTO `user` VALUES ('5', '房文哲', '04143017', 'e70bf1c2ea163c35a5d48860ccb8e2bf', '管理员');
+SET FOREIGN_KEY_CHECKS=1;
