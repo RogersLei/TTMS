@@ -261,7 +261,7 @@ function addStudio() {
     };
     $.post("m/studio.php", data, function () {
       alert("Insert success");
-      iframe.src = "m/studiolist.php"
+      iframe.src = "m/studiolist.php";
     });
   }
   else {
@@ -327,12 +327,56 @@ function updateSchedule() {
   });
 }
 
-function delSchedule() {
-  
+function delSchedule(e) {
+  var a = $(e);
+  var schedulenum = $.trim(a.parent().prevAll()[4].innerHTML);
+  var operation = "del";
+  console.log(schedulenum);
+  var data = {
+    'schedulenum':schedulenum,
+    'operation': operation
+  };
+  $.post("schedule.php",data,function (e) {
+    if(e == "error"){
+      alert("delete error");
+    }
+    else if(e == "success")
+      alert("delete success");
+      location.href = "schedulelist.php";
+  });
 }
 
 function addSchedule() {
-
+  var movnum = $("#movnum").val();
+  var stunum = $("#stunum").val();
+  var startt = $("#startt").val();
+  var endt = $("#endt").val();
+  var operation = "add";
+  var s = formatOut(startt);
+  var e = formatOut(endt);
+  //console.log(e);
+  var iframe = document.getElementById("iframe");
+  var status = movnum!=""&&movnum!=null && stunum!=""&&stunum!=null && startt!=""&&startt!=null && endt!=""&&endt!=null;
+  if(status) {
+    var data = {
+      "movnum": movnum,
+      "stunum": stunum,
+      "startt": s,
+      "endt": e,
+      "operation": operation
+    };
+    $.post("m/schedule.php", data, function (e) {
+        if(e=="error"){
+          alert("movie or studio not defined");
+        }
+        else if(e=="success"){
+          alert("Insert success");
+          iframe.src = "m/schedulelist.php";
+        }
+    });
+  }
+  else
+    alert("please input information");
 }
 
 //时间格式处理

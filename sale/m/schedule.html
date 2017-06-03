@@ -17,8 +17,8 @@
 <table class="table table-bordered table-hover table-striped">
   <tr class="">
     <th class="col-xs-offset-3 col-sm-2 hidden-xs text-center">计划编号</th>
-    <th class="col-xs-offset-3 col-sm-2 text-center">影片编号</th>
-    <th class="col-xs-offset-3 col-sm-2 text-center">影厅编号</th>
+    <th class="col-xs-offset-3 col-sm-2 text-center">影片名称</th>
+    <th class="col-xs-offset-3 col-sm-2 text-center">影厅名称</th>
     <th class="col-xs-offset-3 col-sm-2 hidden-xs text-center">上映时间</th>
     <th class="col-xs-offset-3 col-sm-2 hidden-xs text-center">结束时间</th>
     <th class="col-xs-offset-3 col-sm-2 text-center">操作</th>
@@ -30,10 +30,10 @@
       <?php echo $Schedulelist[$i]['Schedule_ID'];?>
     </td>
     <td class="col-xs-offset-3 col-sm-2">
-      <?php echo $Schedulelist[$i]['Movie_Id'];?>
+      <?php echo $Schedulelist[$i]['Movie_Name'];?>
     </td>
     <td class="col-xs-offset-3 col-sm-2">
-      <?php echo $Schedulelist[$i]['Studio_ID'];?>
+      <?php echo $Schedulelist[$i]['Studio_Name'];?>
     </td>
     <td class="col-xs-offset-3 col-sm-2 hidden-xs">
       <?php echo $Schedulelist[$i]['Start_Time'];?>
@@ -42,7 +42,7 @@
       <?php echo $Schedulelist[$i]['End_Time'];?>
     </td>
     <td class="col-xs-offset-3 col-sm-3">
-      <a href="#UpdateSchedule" class="btn btn-warning" data-toggle="modal">修改</a>
+      <!--<a href="#UpdateSchedule" class="btn btn-warning" data-toggle="modal">修改</a>-->
       <a href="javascript:void(0);" class="btn btn-danger" onclick="delSchedule(this)">删除</a>
     </td>
   </tr>
@@ -82,14 +82,14 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="movnum" class="col-sm-2">影片编号</label>
+            <label for="movnum" class="col-sm-2">影片名称</label>
             <div class="col-sm-10 has-feedback">
               <input type="text" class="form-control" id="movnum">
               <span class="glyphicon glyphicon-ok form-control-feedback"></span>
             </div>
           </div>
           <div class="form-group">
-            <label for="stunum" class="col-sm-2">影厅编号</label>
+            <label for="stunum" class="col-sm-2">影厅名称</label>
             <div class="col-sm-10 has-feedback">
               <input type="text" class="form-control" id="stunum">
               <span class="glyphicon glyphicon-ok form-control-feedback"></span>
