@@ -48,14 +48,9 @@
             echo "success";
     }
     //修改计划
-//    else if($operation=="update"){
-//        $sql1 = "update schedule set Movie_Id=$movnum,Studio_ID=$stunum,Start_Time='".$startt."',End_Time='".$endt."' ";
-//        $result = mysqli_query($con,$sql1);
-//        if(!$result){
-//           echo mysqli_error($con);
-//           exit();
-//        }
-//    }
+    else if($operation=="update"){
+//       仅允许修改上映时间
+    }
     //删除计划
     else if($operation=="del"){
         $schedulenum = $_POST['schedulenum'];

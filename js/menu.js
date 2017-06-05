@@ -27,6 +27,92 @@ function exit() {
 function reback() {
   location.href = "studiolist.php" ;
 }
+//锁定座位
+function clicka(e,row,col,id) {
+  //console.log(e.style.color);
+  var c = $("#count").val();
+  var p = $("#price").val();
+  var per = $("#perprice").text();
+  var view = $("#view").html();
+  var type = "";
+  //console.log(e.getAttribute("class"));
+  var classN = e.getAttribute("class");
+  if(classN == "fa fa-circle-o") {
+    if (e.style.color == "") {
+      c++;
+      view += "<li id=" + row + "s" + col + ">第" + row + "行 " + "第" + col + "列</li>";
+      $("#view").html(view);
+      p = c * per;
+      $("#count").val(c);
+      $("#price").val(p.toFixed(2));
+      e.style.color = "red";
+      type = "已锁定";
+    }
+    else {
+      c--;
+      //var li = $("#"+row+col);
+      $("#" + row + "s" + col).remove();
+      //$("#view").html(view);
+      p = c * per;
+      $("#count").val(c);
+      $("#price").val(p.toFixed(2));
+      e.style.color = "";
+      type = "未锁定";
+    }
+    var data = {
+      "crow": row,
+      "ccol": col,
+      "type": type,
+      "id": id
+    };
+    $.post("saleseat.php", data);
+  }
+  else{
+    alert("当前座位状态不可购买");
+  }
+}
+//订单表单
+$('#Order').on('show.bs.modal', function (event){
+  $("#num").val($("#count").val());
+  $("#pr").val($("#price").val());
+  var m = $("#view").html();
+  var n = $("#seat").html(m);
+  //console.log(m);
+  //console.log(n);
+  //$(this).find("num").val($.trim($("#count").val()));
+});
+//交易座位
+function buy(id) {
+  var num = $("#seat").children().length;
+  if (num < 1) {
+    alert("没有选定座位哟");
+  } else {
+    var str = "";
+    for (var i = 0; i < num; i++) {
+      var liid = $("#seat").children()[i].getAttribute("id");
+      str += liid + " ";
+    }
+    var price = $("#pr").val();
+    var time = getNowTime();
+    //console.log(time);
+    var data = {
+      "seat": str,
+      "price": price,
+      "time": time,
+      "id":id
+    };
+    //console.log(data);
+    $.post("order.php",data, function (sc) {
+      console.log(sc);
+      if(sc == "success"){
+        alert("购买成功");
+        location.reload();
+      }
+      else
+        alert("购买失败");
+    });
+  }
+}
 
 function changeSeat(studioid,row,col) {
   var crow = $('#rn').attr("placeholder");
@@ -412,4 +498,15 @@ function isChrome() {
     return true;
   }
   return false;
+}
+//获取当前时间
+function getNowTime() {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth()+1;
+  var day = date.getDate();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+  return year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;
 }

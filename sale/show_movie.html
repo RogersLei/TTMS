@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+
+  <link href="../css/bootstrap.css" rel="stylesheet">
+  <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]>
+      <script src=""></script><!--html5shiv-->
+  <script src=""></script><!--respond-->
+  <![endif]-->
+  <style>
+    span{
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .fa{
+      font-size: 20px;
+    }
+    .seat{
+      margin-top: 40px;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+    #seat,#view{
+      padding-top: 5px;
+      min-height: 34px;
+      border: 1px solid #ccc;
+      background-color: #eeeeee;
+      cursor: not-allowed;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body style="margin-top: 40px;">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-2">
+      <img src="" alt="">
+    </div>
+    <div class="col-xs-10 text-center">
+      <span>影片名称：<?=$movie_list[0]['Movie_Name'] ?></span><br>
+      <span>影厅名称：<?=$studio ?></span><br>
+      <span>影片时长：<?=$movie_list[0]['Movie_Time'] ?></span>
+      <span>影片类型：<?=$movie_list[0]['Movie_Type'] ?></span>
+      <span>影片价格：<span id="perprice"><?=$movie_list[0]['Movie_Price'] ?></span></span>
+    </div>
+  </div>
+  <div class="row seat">
+    <div class="col-xs-8 text-center">
+      <?php for($i=1;$i<$row+1;$i++):?>
+      <?php for($j=1;$j<$col+1;$j++):?>
+      <a href="javascript:void(0);" class="fa fa-<?=$fa[$i][$j] ?>" onclick="clicka(this,<?=$i ?>,<?=$j ?>,<?=$studio_list[0]['Studio_ID'] ?>)"></a>
+      <?php endfor ?>
+      <br/>
+      <?php endfor ?>
+    </div>
+    <div class="col-xs-4 text-center">
+      <form class="form-horizontal" method="post" action="">
+        <div class="form-group">
+          <label for="view" class="col-xs-3">详情</label>
+          <div class="col-xs-9 has-feedback">
+            <ul id="view" class="list-unstyled">
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="count" class="col-xs-3">数量</label>
+          <div class="col-xs-9 has-feedback">
+            <input type="text" class="form-control" id="count" value="0" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="price" class="col-xs-3">价格</label>
+          <div class="col-xs-9 has-feedback">
+            <input type="text" class="form-control" id="price" value="0" disabled>
+          </div>
+        </div>
+      </form>
+      <a href="#Order" class="btn btn-warning" data-toggle="modal">Order</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="Order">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">当前订单</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" method="post" action="">
+          <div class="form-group">
+            <label for="movname" class="col-sm-2">影片名称</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="movname" value="<?=$movie ?>" disabled>
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="stuname" class="col-sm-2">影厅名称</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="stuname" value="<?=$studio ?>" disabled >
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="startt" class="col-sm-2">上映时间</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="startt" value="<?=$scheduletime[0]['Start_Time']?>" disabled>
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="endt" class="col-sm-2">结束时间</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="endt" value="<?=$scheduletime[0]['End_Time']?>" disabled>
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="seat" class="col-sm-2">座位信息</label>
+            <div class="col-sm-10 has-feedback">
+              <ol id="seat"></ol>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="num" class="col-sm-2">数量</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="num" disabled>
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pr" class="col-sm-2">价格</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="pr" disabled>
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+        <a href="javascript:void(0);" class="btn btn-primary" onclick="buy(<?=$id?>)">Buy</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../js/jquery1.11.3.min.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script src="../js/menu.js"></script>
+</body>
+</html>

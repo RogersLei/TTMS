@@ -6,6 +6,6 @@
     }
     else{
         if($_SESSION['type']=="售票员")
-            header('Location:sale.html');
+            header('Location:sale.php');
     }
 ?>
