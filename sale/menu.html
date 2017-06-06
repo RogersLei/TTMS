@@ -142,18 +142,32 @@
         <h4 class="modal-title" >添加影片</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" method="post" action="">
+        <form class="form-horizontal" method="post" action="m/film.php" name="form">
+          <div class="form-group" hidden>
+            <label for="fc" class="col-sm-2">添加操作</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="text" class="form-control" id="fc" name="operation" value="add">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
           <div class="form-group">
             <label for="fn" class="col-sm-2">影片名称</label>
             <div class="col-sm-10 has-feedback">
-              <input type="text" class="form-control" id="fn">
+              <input type="text" class="form-control" id="fn" name="filmname">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fim" class="col-sm-2">影片图片</label>
+            <div class="col-sm-10 has-feedback">
+              <input type="file" class="form-control" id="fim" name="fileimage">
               <span class="glyphicon glyphicon-ok form-control-feedback"></span>
             </div>
           </div>
           <div class="form-group">
             <label for="fty" class="col-sm-2">影片类型</label>
             <div class="col-sm-10 has-feedback">
-              <input type="text" class="form-control" id="fty" list="Type">
+              <input type="text" class="form-control" id="fty" list="Type" name="filmtype">
               <span class="glyphicon glyphicon-ok form-control-feedback"></span>
               <datalist id="Type">
                 <option value="动作片"></option>
@@ -165,14 +179,14 @@
           <div class="form-group">
             <label for="ftm" class="col-sm-2">影片时长</label>
             <div class="col-sm-10 has-feedback">
-              <input type="text" class="form-control" id="ftm" >
+              <input type="text" class="form-control" id="ftm" name="filmtime">
               <span class="glyphicon glyphicon-ok form-control-feedback"></span>
             </div>
           </div>
           <div class="form-group">
             <label for="fp" class="col-sm-2">影片价格</label>
             <div class="col-sm-10 has-feedback">
-              <input type="text" class="form-control" id="fp">
+              <input type="text" class="form-control" id="fp" name="filmprice">
               <span class="glyphicon glyphicon-ok form-control-feedback"></span>
             </div>
           </div>

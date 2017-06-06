@@ -1,7 +1,10 @@
 <?php
     header('Content-Type:text/html;charset=utf-8');
 
-    require_once "../php/init.php";
+    session_start();
+    if(!isset($_SESSION['name'])){
+        header('Location:../index.html');
+    }
 
     $con = mysqli_connect('localhost','root','','ttms');
     mysqli_set_charset($con,"utf8");

@@ -265,7 +265,6 @@ function updateFilm() {
   var filmtime = $("#ftm").val();
   var filmprice = $("#fp").val();
   var operation = "update";
-  //console.log(num+name+pwd+type);
   var data = {
     'filmnum': filmnum,
     'filmname': filmname,

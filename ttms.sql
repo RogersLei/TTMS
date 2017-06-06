@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-06-06 08:19:16
+Date: 2017-06-06 12:18:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,19 +27,19 @@ CREATE TABLE `movie` (
   `Movie_Price` float(4,2) DEFAULT NULL,
   `Movie_Img` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Movie_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of movie
 -- ----------------------------
-INSERT INTO `movie` VALUES ('1', '加勒比海盗5：死无对证', '126', '动作片', '38.80', null);
-INSERT INTO `movie` VALUES ('2', '神奇女侠', '142', '动作片', '22.90', null);
-INSERT INTO `movie` VALUES ('3', '摔跤吧！爸爸', '140', '喜剧片', '29.99', null);
-INSERT INTO `movie` VALUES ('4', '荡寇风云', '129', '战争片', '48.88', null);
+INSERT INTO `movie` VALUES ('1', '加勒比海盗5：死无对证', '126', '动作片', '38.80', '../images/1.jpg');
+INSERT INTO `movie` VALUES ('2', '神奇女侠', '142', '动作片', '22.90', '');
+INSERT INTO `movie` VALUES ('3', '摔跤吧！爸爸', '140', '喜剧片', '29.99', '../images/2.jpg');
+INSERT INTO `movie` VALUES ('4', '荡寇风云', '129', '战争片', '27.88', '../images/6.jpg');
 INSERT INTO `movie` VALUES ('5', '新木乃伊', '106', '奇幻，冒险', '29.00', null);
-INSERT INTO `movie` VALUES ('6', '银河护卫队2', '136', '科幻，冒险', '38.00', null);
-INSERT INTO `movie` VALUES ('7', '速度与激情8', '136', '犯罪，动作', '38.90', null);
-INSERT INTO `movie` VALUES ('8', '吃吃的爱', '95', '爱情', '28.00', null);
+INSERT INTO `movie` VALUES ('6', '银河护卫队2', '136', '科幻，冒险', '38.00', '../images/4.jpg');
+INSERT INTO `movie` VALUES ('7', '速度与激情8', '136', '犯罪，动作', '38.90', '../images/3.jpg');
+INSERT INTO `movie` VALUES ('8', '吃吃的爱', '95', '爱情', '28.00', '../images/5.jpg');
 
 -- ----------------------------
 -- Table structure for schedule
@@ -333,7 +333,7 @@ INSERT INTO `seat` VALUES ('2302', '2', '5', '9', '已锁定');
 INSERT INTO `seat` VALUES ('2303', '2', '5', '10', '已锁定');
 INSERT INTO `seat` VALUES ('2304', '2', '5', '11', '已锁定');
 INSERT INTO `seat` VALUES ('2305', '2', '5', '12', '未锁定');
-INSERT INTO `seat` VALUES ('2306', '2', '5', '13', '未锁定');
+INSERT INTO `seat` VALUES ('2306', '2', '5', '13', '已锁定');
 INSERT INTO `seat` VALUES ('2307', '2', '5', '14', '未锁定');
 INSERT INTO `seat` VALUES ('2308', '2', '5', '15', '未锁定');
 INSERT INTO `seat` VALUES ('2309', '2', '5', '16', '未锁定');
@@ -349,7 +349,7 @@ INSERT INTO `seat` VALUES ('2318', '2', '6', '8', '未锁定');
 INSERT INTO `seat` VALUES ('2319', '2', '6', '9', '已锁定');
 INSERT INTO `seat` VALUES ('2320', '2', '6', '10', '已锁定');
 INSERT INTO `seat` VALUES ('2321', '2', '6', '11', '未锁定');
-INSERT INTO `seat` VALUES ('2322', '2', '6', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2322', '2', '6', '12', '已锁定');
 INSERT INTO `seat` VALUES ('2323', '2', '6', '13', '已锁定');
 INSERT INTO `seat` VALUES ('2324', '2', '6', '14', '已锁定');
 INSERT INTO `seat` VALUES ('2325', '2', '6', '15', '未锁定');
@@ -359,7 +359,7 @@ INSERT INTO `seat` VALUES ('2328', '2', '7', '1', '未锁定');
 INSERT INTO `seat` VALUES ('2329', '2', '7', '2', '已交易');
 INSERT INTO `seat` VALUES ('2330', '2', '7', '3', '未锁定');
 INSERT INTO `seat` VALUES ('2331', '2', '7', '4', '未锁定');
-INSERT INTO `seat` VALUES ('2332', '2', '7', '5', '未锁定');
+INSERT INTO `seat` VALUES ('2332', '2', '7', '5', '已交易');
 INSERT INTO `seat` VALUES ('2333', '2', '7', '6', '未锁定');
 INSERT INTO `seat` VALUES ('2334', '2', '7', '7', '未锁定');
 INSERT INTO `seat` VALUES ('2335', '2', '7', '8', '已交易');
@@ -1385,12 +1385,13 @@ CREATE TABLE `ticket` (
   PRIMARY KEY (`Ticket_ID`),
   KEY `FK_SCHE_TICKET` (`Schedule_ID`),
   CONSTRAINT `FK_SCHE_TICKET` FOREIGN KEY (`Schedule_ID`) REFERENCES `schedule` (`Schedule_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ticket
 -- ----------------------------
 INSERT INTO `ticket` VALUES ('1', '1', '116.40', '2017/6/6 1:7:42');
+INSERT INTO `ticket` VALUES ('2', '1', '38.80', '2017/6/6 8:58:3');
 
 -- ----------------------------
 -- Table structure for user
