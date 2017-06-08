@@ -54,7 +54,7 @@
     <div class="col-xs-8 text-center">
       <?php for($i=1;$i<$row+1;$i++):?>
       <?php for($j=1;$j<$col+1;$j++):?>
-      <a href="javascript:void(0);" class="fa fa-<?=$fa[$i][$j] ?>" onclick="clicka(this,<?=$i ?>,<?=$j ?>,<?=$studio_list[0]['Studio_ID'] ?>)"></a>
+      <a href="javascript:void(0);" class="fa fa-<?=$fa[$i][$j] ?>" onclick="clicka(this,<?=$i ?>,<?=$j ?>,<?=$studio_list[0]['Studio_ID'] ?>,<?=$id?>)"></a>
       <?php endfor ?>
       <br/>
       <?php endfor ?>

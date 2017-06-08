@@ -28,7 +28,7 @@ function reback() {
   location.href = "studiolist.php" ;
 }
 //锁定座位
-function clicka(e,row,col,id) {
+function clicka(e,row,col,stuid,schid) {
   //console.log(e.style.color);
   var c = $("#count").val();
   var p = $("#price").val();
@@ -63,7 +63,8 @@ function clicka(e,row,col,id) {
       "crow": row,
       "ccol": col,
       "type": type,
-      "id": id
+      "id": stuid,
+      "schid":schid
     };
     $.post("saleseat.php", data);
   }

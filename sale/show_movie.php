@@ -1,6 +1,6 @@
 <?php
     header('Content-Type:text/html;charset=utf-8');
-    $id = isset($_GET['id'])?$_GET['id']:"";
+    $id = isset($_GET['id'])?$_GET['id']:"";   //schedule id
     $movie = isset($_GET['movie'])?$_GET['movie']:"";
     $studio = isset($_GET['studio'])?$_GET['studio']:"";
 
@@ -18,7 +18,8 @@
             $movie_list[] = $array;
         }
         //echo $movie_list[0]['Movie_Price'];
-        $sql2 = "SELECT * FROM seat,studio  where studio.Studio_ID = seat.Studio_ID and studio.Studio_Name='".$studio."'";
+        $sql2 = "SELECT Studio_Row,Studio_Col,Sale_Status,Studio_ID FROM studio,sale where Studio_ID in (SELECT Studio_ID FROM `schedule` WHERE Schedule_ID=$id) AND Schedule_ID=$id";
+        //echo $sql2;
         $result2 = mysqli_query($con,$sql2);
         $studio_list = array();
         while($array = mysqli_fetch_array($result2)){
@@ -26,11 +27,12 @@
         }
         $row = $studio_list[0]['Studio_Row'];
         $col = $studio_list[0]['Studio_Col'];
-         $k = 0 ;
+        //echo $row;
+        $k = 0 ;
         for($i=1;$i<=$row;$i++){
             for($j=1;$j<=$col;$j++){
                 while($k<count($studio_list)){
-                    $type = $studio_list[$k]['Seat_Status'];
+                    $type = $studio_list[$k]['Sale_Status'];
                     if($type == "未锁定" ){
                         $fa[$i][$j] = "circle-o";
                         break;

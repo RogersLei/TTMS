@@ -42,42 +42,58 @@
       <h3>计划列表</h3>
       <!--heading循环存放计划中的影片名称-->
       <table class="table">
-        <tr class="text-center">
-          <th class="text-center">影片名称</th>
-          <th class="text-center">开始时间</th>
-          <th class="text-center">操作</th>
-        </tr>
-        <?php for($i=0;$i<count($Schedulelist);$i++): ?>
-        <tr>
-          <td>
-            <?php echo $Schedulelist[$i]['Movie_Name'] ?>
-          </td>
-          <td>
-            <?php echo $Schedulelist[$i]['Start_Time'] ?>
-          </td>
-          <td>
-            <a href="show_movie.php?id=<?=$Schedulelist[$i]['Schedule_ID'] ?>&movie=<?=$Schedulelist[$i]['Movie_Name'] ?>&studio=<?=$Schedulelist[$i]['Studio_Name'] ?>" class="btn btn-default" target="iframes">查看</a>
-          </td>
-        </tr>
-        <?php endfor ?>
+      <tr class="text-center">
+      <th class="text-center">影片名称</th>
+      <th class="text-center">开始时间</th>
+      <th class="text-center">操作</th>
+      </tr>
+      <?php for($i=0;$i<count($Schedulelist);$i++): ?>
+      <tr>
+      <td>
+      <?php echo $Schedulelist[$i]['Movie_Name'] ?>
+      </td>
+      <td>
+      <?php echo $Schedulelist[$i]['Start_Time'] ?>
+      </td>
+      <td>
+      <a href="show_movie.php?id=<?=$Schedulelist[$i]['Schedule_ID'] ?>&movie=<?=$Schedulelist[$i]['Movie_Name'] ?>&studio=<?=$Schedulelist[$i]['Studio_Name'] ?>" class="btn btn-default" target="iframes">查看</a>
+      </td>
+      </tr>
+      <?php endfor ?>
       </table>
       <nav aria-label="Page navigation">
-        <ul class="pagination">
-          <li>
-            <a href="sale.php?page=<?=$pre_page ?>" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <?php for($j=1;$j<$total_page+1;$j++):?>
-          <li><a href="sale.php?page=<?=$j ?>"><?=$j ?></a></li>
-          <?php endfor ?>
-          <li>
-            <a href="sale.php?page=<?=$next_page ?>" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
+      <ul class="pagination">
+      <li>
+      <a href="sale.php?page=<?=$pre_page ?>" aria-label="Previous">
+      <span aria-hidden="true">&laquo;</span>
+      </a>
+      </li>
+      <?php for($j=1;$j<$total_page+1;$j++):?>
+      <li><a href="sale.php?page=<?=$j ?>"><?=$j ?></a></li>
+      <?php endfor ?>
+      <li>
+      <a href="sale.php?page=<?=$next_page ?>" aria-label="Next">
+      <span aria-hidden="true">&raquo;</span>
+      </a>
+      </li>
+      </ul>
       </nav>
+      <!--<div class="panel-group" id="name">-->
+        <!--&lt;!&ndash;某电影&ndash;&gt;-->
+        <!--<div class="panel panel-default">-->
+          <!--<div class="panel-heading">-->
+            <!--<a href="#" class="panel-title" data-toggle="collapse" data-parent="#name">片名</a>-->
+          <!--</div>-->
+          <!--<div class="collapse panel-collapse" id="">-->
+            <!--<div class="panel-body">-->
+              <!--<ul class="nav nav-pills nav-stacked">-->
+                <!--<li><a href="" target="iframe">片计划</a></li>-->
+                <!--<li><a href="" data-toggle="modal">片计划</a></li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
     <div class="col-md-8 col-sm-12">
       <div class="embed-responsive embed-responsive-16by9">

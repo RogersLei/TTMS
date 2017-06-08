@@ -23,12 +23,12 @@
             $seat = explode("s",$seatarray[$i]);
             //echo $seat[0];
             //echo $seat[1];
-            $sql = "UPDATE seat set Seat_Status='".$type."' WHERE  (Seat_Col=$seat[1] and Seat_Row=$seat[0] and Studio_ID = ( SELECT Studio_ID FROM `schedule` WHERE `schedule`.Schedule_ID=$scheduid))";
+            $sql = "UPDATE sale set Sale_Status='".$type."' WHERE  (Schedule_ID=$scheduid and Seat_ID in (SELECT Seat_ID FROM seat where Seat_Col=$seat[1] and Seat_Row=$seat[0] and Studio_ID = ( SELECT Studio_ID FROM `schedule` WHERE `schedule`.Schedule_ID=$scheduid)))";
             //echo $sql;
             $result = mysqli_query($con,$sql);
             if(!$result){
                 echo "error";
-                break;
+                exit();
             }
         }
         $sql2 = "insert into ticket (Schedule_ID,Ticket_Price,Ticket_Time) values ($scheduid,$price,'".$time."')";
