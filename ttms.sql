@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2017-06-06 12:18:35
+Date: 2017-06-11 17:57:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,7 @@ CREATE TABLE `movie` (
   `Movie_Price` float(4,2) DEFAULT NULL,
   `Movie_Img` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Movie_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of movie
@@ -42,6 +42,475 @@ INSERT INTO `movie` VALUES ('7', '速度与激情8', '136', '犯罪，动作', '
 INSERT INTO `movie` VALUES ('8', '吃吃的爱', '95', '爱情', '28.00', '../images/5.jpg');
 
 -- ----------------------------
+-- Table structure for sale
+-- ----------------------------
+DROP TABLE IF EXISTS `sale`;
+CREATE TABLE `sale` (
+  `Sale_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Schedule_ID` int(11) NOT NULL,
+  `Seat_ID` int(11) NOT NULL,
+  `Sale_Status` varchar(255) NOT NULL,
+  PRIMARY KEY (`Sale_ID`),
+  KEY `FK_Sale_Schedule` (`Schedule_ID`),
+  CONSTRAINT `FK_Sale_Schedule` FOREIGN KEY (`Schedule_ID`) REFERENCES `schedule` (`Schedule_ID`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=1112 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sale
+-- ----------------------------
+INSERT INTO `sale` VALUES ('261', '17', '2667', '未锁定');
+INSERT INTO `sale` VALUES ('262', '17', '2668', '未锁定');
+INSERT INTO `sale` VALUES ('263', '17', '2669', '未锁定');
+INSERT INTO `sale` VALUES ('264', '17', '2670', '未锁定');
+INSERT INTO `sale` VALUES ('265', '17', '2671', '未锁定');
+INSERT INTO `sale` VALUES ('266', '17', '2672', '未锁定');
+INSERT INTO `sale` VALUES ('267', '17', '2673', '未锁定');
+INSERT INTO `sale` VALUES ('268', '17', '2674', '未锁定');
+INSERT INTO `sale` VALUES ('269', '17', '2675', '未锁定');
+INSERT INTO `sale` VALUES ('270', '17', '2676', '未锁定');
+INSERT INTO `sale` VALUES ('271', '17', '2677', '未锁定');
+INSERT INTO `sale` VALUES ('272', '17', '2678', '未锁定');
+INSERT INTO `sale` VALUES ('273', '17', '2679', '未锁定');
+INSERT INTO `sale` VALUES ('274', '17', '2680', '未锁定');
+INSERT INTO `sale` VALUES ('275', '17', '2681', '未锁定');
+INSERT INTO `sale` VALUES ('276', '17', '2682', '未锁定');
+INSERT INTO `sale` VALUES ('277', '17', '2683', '未锁定');
+INSERT INTO `sale` VALUES ('278', '17', '2684', '未锁定');
+INSERT INTO `sale` VALUES ('279', '17', '2685', '未锁定');
+INSERT INTO `sale` VALUES ('280', '17', '2686', '未锁定');
+INSERT INTO `sale` VALUES ('281', '17', '2687', '未锁定');
+INSERT INTO `sale` VALUES ('282', '17', '2688', '未锁定');
+INSERT INTO `sale` VALUES ('283', '17', '2689', '未锁定');
+INSERT INTO `sale` VALUES ('284', '17', '2690', '未锁定');
+INSERT INTO `sale` VALUES ('285', '17', '2691', '未锁定');
+INSERT INTO `sale` VALUES ('286', '17', '2692', '未锁定');
+INSERT INTO `sale` VALUES ('287', '17', '2693', '未锁定');
+INSERT INTO `sale` VALUES ('288', '17', '2694', '未锁定');
+INSERT INTO `sale` VALUES ('289', '17', '2695', '未锁定');
+INSERT INTO `sale` VALUES ('290', '17', '2696', '未锁定');
+INSERT INTO `sale` VALUES ('291', '17', '2697', '未锁定');
+INSERT INTO `sale` VALUES ('292', '17', '2698', '未锁定');
+INSERT INTO `sale` VALUES ('293', '17', '2699', '未锁定');
+INSERT INTO `sale` VALUES ('294', '17', '2700', '未锁定');
+INSERT INTO `sale` VALUES ('295', '17', '2701', '未锁定');
+INSERT INTO `sale` VALUES ('296', '17', '2702', '未锁定');
+INSERT INTO `sale` VALUES ('297', '17', '2703', '未锁定');
+INSERT INTO `sale` VALUES ('298', '17', '2704', '未锁定');
+INSERT INTO `sale` VALUES ('299', '17', '2705', '未锁定');
+INSERT INTO `sale` VALUES ('300', '17', '2706', '未锁定');
+INSERT INTO `sale` VALUES ('301', '17', '2707', '未锁定');
+INSERT INTO `sale` VALUES ('302', '17', '2708', '未锁定');
+INSERT INTO `sale` VALUES ('303', '17', '2709', '未锁定');
+INSERT INTO `sale` VALUES ('304', '17', '2710', '未锁定');
+INSERT INTO `sale` VALUES ('305', '17', '2711', '未锁定');
+INSERT INTO `sale` VALUES ('306', '17', '2712', '未锁定');
+INSERT INTO `sale` VALUES ('307', '17', '2713', '未锁定');
+INSERT INTO `sale` VALUES ('308', '17', '2714', '未锁定');
+INSERT INTO `sale` VALUES ('309', '17', '2715', '未锁定');
+INSERT INTO `sale` VALUES ('310', '17', '2716', '未锁定');
+INSERT INTO `sale` VALUES ('311', '17', '2717', '未锁定');
+INSERT INTO `sale` VALUES ('312', '17', '2718', '未锁定');
+INSERT INTO `sale` VALUES ('313', '17', '2719', '已交易');
+INSERT INTO `sale` VALUES ('314', '17', '2720', '已交易');
+INSERT INTO `sale` VALUES ('315', '17', '2721', '已交易');
+INSERT INTO `sale` VALUES ('316', '17', '2722', '未锁定');
+INSERT INTO `sale` VALUES ('317', '17', '2723', '未锁定');
+INSERT INTO `sale` VALUES ('318', '17', '2724', '未锁定');
+INSERT INTO `sale` VALUES ('319', '17', '2725', '未锁定');
+INSERT INTO `sale` VALUES ('320', '17', '2726', '未锁定');
+INSERT INTO `sale` VALUES ('321', '17', '2727', '未锁定');
+INSERT INTO `sale` VALUES ('322', '17', '2728', '未锁定');
+INSERT INTO `sale` VALUES ('323', '17', '2729', '未锁定');
+INSERT INTO `sale` VALUES ('324', '17', '2730', '未锁定');
+INSERT INTO `sale` VALUES ('325', '17', '2731', '未锁定');
+INSERT INTO `sale` VALUES ('326', '17', '2732', '未锁定');
+INSERT INTO `sale` VALUES ('327', '17', '2733', '未锁定');
+INSERT INTO `sale` VALUES ('328', '17', '2734', '未锁定');
+INSERT INTO `sale` VALUES ('329', '17', '2735', '未锁定');
+INSERT INTO `sale` VALUES ('330', '17', '2736', '未锁定');
+INSERT INTO `sale` VALUES ('331', '17', '2737', '未锁定');
+INSERT INTO `sale` VALUES ('332', '17', '2738', '未锁定');
+INSERT INTO `sale` VALUES ('333', '17', '2739', '未锁定');
+INSERT INTO `sale` VALUES ('334', '17', '2740', '未锁定');
+INSERT INTO `sale` VALUES ('335', '17', '2741', '未锁定');
+INSERT INTO `sale` VALUES ('336', '17', '2742', '未锁定');
+INSERT INTO `sale` VALUES ('337', '17', '2743', '未锁定');
+INSERT INTO `sale` VALUES ('338', '17', '2744', '未锁定');
+INSERT INTO `sale` VALUES ('339', '17', '2745', '未锁定');
+INSERT INTO `sale` VALUES ('340', '17', '2746', '未锁定');
+INSERT INTO `sale` VALUES ('341', '17', '2747', '未锁定');
+INSERT INTO `sale` VALUES ('342', '17', '2748', '未锁定');
+INSERT INTO `sale` VALUES ('343', '17', '2749', '未锁定');
+INSERT INTO `sale` VALUES ('344', '17', '2750', '未锁定');
+INSERT INTO `sale` VALUES ('345', '17', '2751', '未锁定');
+INSERT INTO `sale` VALUES ('346', '17', '2752', '未锁定');
+INSERT INTO `sale` VALUES ('347', '17', '2753', '未锁定');
+INSERT INTO `sale` VALUES ('348', '17', '2754', '未锁定');
+INSERT INTO `sale` VALUES ('349', '17', '2755', '未锁定');
+INSERT INTO `sale` VALUES ('350', '17', '2756', '未锁定');
+INSERT INTO `sale` VALUES ('351', '17', '2757', '未锁定');
+INSERT INTO `sale` VALUES ('352', '17', '2758', '未锁定');
+INSERT INTO `sale` VALUES ('353', '17', '2759', '未锁定');
+INSERT INTO `sale` VALUES ('354', '17', '2760', '未锁定');
+INSERT INTO `sale` VALUES ('355', '17', '2761', '未锁定');
+INSERT INTO `sale` VALUES ('356', '17', '2762', '未锁定');
+INSERT INTO `sale` VALUES ('357', '17', '2763', '未锁定');
+INSERT INTO `sale` VALUES ('358', '17', '2764', '未锁定');
+INSERT INTO `sale` VALUES ('359', '17', '2765', '未锁定');
+INSERT INTO `sale` VALUES ('360', '17', '2766', '未锁定');
+INSERT INTO `sale` VALUES ('361', '17', '2767', '未锁定');
+INSERT INTO `sale` VALUES ('362', '17', '2768', '未锁定');
+INSERT INTO `sale` VALUES ('363', '17', '2769', '未锁定');
+INSERT INTO `sale` VALUES ('364', '17', '2770', '未锁定');
+INSERT INTO `sale` VALUES ('365', '17', '2771', '未锁定');
+INSERT INTO `sale` VALUES ('366', '17', '2772', '未锁定');
+INSERT INTO `sale` VALUES ('367', '17', '2773', '未锁定');
+INSERT INTO `sale` VALUES ('368', '17', '2774', '未锁定');
+INSERT INTO `sale` VALUES ('369', '17', '2775', '未锁定');
+INSERT INTO `sale` VALUES ('370', '17', '2776', '未锁定');
+INSERT INTO `sale` VALUES ('371', '17', '2777', '未锁定');
+INSERT INTO `sale` VALUES ('372', '17', '2778', '未锁定');
+INSERT INTO `sale` VALUES ('373', '17', '2779', '未锁定');
+INSERT INTO `sale` VALUES ('374', '17', '2780', '未锁定');
+INSERT INTO `sale` VALUES ('375', '17', '2781', '未锁定');
+INSERT INTO `sale` VALUES ('376', '17', '2782', '未锁定');
+INSERT INTO `sale` VALUES ('377', '17', '2783', '未锁定');
+INSERT INTO `sale` VALUES ('378', '17', '2784', '未锁定');
+INSERT INTO `sale` VALUES ('379', '17', '2785', '未锁定');
+INSERT INTO `sale` VALUES ('380', '17', '2786', '未锁定');
+INSERT INTO `sale` VALUES ('381', '17', '2787', '未锁定');
+INSERT INTO `sale` VALUES ('382', '17', '2788', '未锁定');
+INSERT INTO `sale` VALUES ('383', '17', '2789', '未锁定');
+INSERT INTO `sale` VALUES ('384', '17', '2790', '未锁定');
+INSERT INTO `sale` VALUES ('385', '17', '2791', '未锁定');
+INSERT INTO `sale` VALUES ('386', '17', '2792', '未锁定');
+INSERT INTO `sale` VALUES ('387', '17', '2793', '未锁定');
+INSERT INTO `sale` VALUES ('388', '17', '2794', '未锁定');
+INSERT INTO `sale` VALUES ('389', '17', '2795', '未锁定');
+INSERT INTO `sale` VALUES ('390', '17', '2796', '未锁定');
+INSERT INTO `sale` VALUES ('791', '22', '2447', '未锁定');
+INSERT INTO `sale` VALUES ('792', '22', '2448', '未锁定');
+INSERT INTO `sale` VALUES ('793', '22', '2449', '未锁定');
+INSERT INTO `sale` VALUES ('794', '22', '2450', '未锁定');
+INSERT INTO `sale` VALUES ('795', '22', '2451', '未锁定');
+INSERT INTO `sale` VALUES ('796', '22', '2452', '未锁定');
+INSERT INTO `sale` VALUES ('797', '22', '2453', '未锁定');
+INSERT INTO `sale` VALUES ('798', '22', '2454', '未锁定');
+INSERT INTO `sale` VALUES ('799', '22', '2455', '未锁定');
+INSERT INTO `sale` VALUES ('800', '22', '2456', '未锁定');
+INSERT INTO `sale` VALUES ('801', '22', '2457', '未锁定');
+INSERT INTO `sale` VALUES ('802', '22', '2458', '未锁定');
+INSERT INTO `sale` VALUES ('803', '22', '2459', '未锁定');
+INSERT INTO `sale` VALUES ('804', '22', '2460', '未锁定');
+INSERT INTO `sale` VALUES ('805', '22', '2461', '未锁定');
+INSERT INTO `sale` VALUES ('806', '22', '2462', '未锁定');
+INSERT INTO `sale` VALUES ('807', '22', '2463', '未锁定');
+INSERT INTO `sale` VALUES ('808', '22', '2464', '未锁定');
+INSERT INTO `sale` VALUES ('809', '22', '2465', '未锁定');
+INSERT INTO `sale` VALUES ('810', '22', '2466', '未锁定');
+INSERT INTO `sale` VALUES ('811', '22', '2467', '未锁定');
+INSERT INTO `sale` VALUES ('812', '22', '2468', '未锁定');
+INSERT INTO `sale` VALUES ('813', '22', '2469', '未锁定');
+INSERT INTO `sale` VALUES ('814', '22', '2470', '未锁定');
+INSERT INTO `sale` VALUES ('815', '22', '2471', '未锁定');
+INSERT INTO `sale` VALUES ('816', '22', '2472', '未锁定');
+INSERT INTO `sale` VALUES ('817', '22', '2473', '未锁定');
+INSERT INTO `sale` VALUES ('818', '22', '2474', '未锁定');
+INSERT INTO `sale` VALUES ('819', '22', '2475', '未锁定');
+INSERT INTO `sale` VALUES ('820', '22', '2476', '未锁定');
+INSERT INTO `sale` VALUES ('821', '22', '2477', '未锁定');
+INSERT INTO `sale` VALUES ('822', '22', '2478', '未锁定');
+INSERT INTO `sale` VALUES ('823', '22', '2479', '未锁定');
+INSERT INTO `sale` VALUES ('824', '22', '2480', '未锁定');
+INSERT INTO `sale` VALUES ('825', '22', '2481', '未锁定');
+INSERT INTO `sale` VALUES ('826', '22', '2482', '未锁定');
+INSERT INTO `sale` VALUES ('827', '22', '2483', '未锁定');
+INSERT INTO `sale` VALUES ('828', '22', '2484', '未锁定');
+INSERT INTO `sale` VALUES ('829', '22', '2485', '未锁定');
+INSERT INTO `sale` VALUES ('830', '22', '2486', '未锁定');
+INSERT INTO `sale` VALUES ('831', '22', '2487', '未锁定');
+INSERT INTO `sale` VALUES ('832', '22', '2488', '未锁定');
+INSERT INTO `sale` VALUES ('833', '22', '2489', '未锁定');
+INSERT INTO `sale` VALUES ('834', '22', '2490', '未锁定');
+INSERT INTO `sale` VALUES ('835', '22', '2491', '已交易');
+INSERT INTO `sale` VALUES ('836', '22', '2492', '未锁定');
+INSERT INTO `sale` VALUES ('837', '22', '2493', '未锁定');
+INSERT INTO `sale` VALUES ('838', '22', '2494', '未锁定');
+INSERT INTO `sale` VALUES ('839', '22', '2495', '未锁定');
+INSERT INTO `sale` VALUES ('840', '22', '2496', '未锁定');
+INSERT INTO `sale` VALUES ('841', '22', '2497', '未锁定');
+INSERT INTO `sale` VALUES ('842', '22', '2498', '未锁定');
+INSERT INTO `sale` VALUES ('843', '22', '2499', '未锁定');
+INSERT INTO `sale` VALUES ('844', '22', '2500', '已交易');
+INSERT INTO `sale` VALUES ('845', '22', '2501', '已交易');
+INSERT INTO `sale` VALUES ('846', '22', '2502', '未锁定');
+INSERT INTO `sale` VALUES ('847', '22', '2503', '未锁定');
+INSERT INTO `sale` VALUES ('848', '22', '2504', '未锁定');
+INSERT INTO `sale` VALUES ('849', '22', '2505', '未锁定');
+INSERT INTO `sale` VALUES ('850', '22', '2506', '未锁定');
+INSERT INTO `sale` VALUES ('851', '22', '2507', '未锁定');
+INSERT INTO `sale` VALUES ('852', '22', '2508', '未锁定');
+INSERT INTO `sale` VALUES ('853', '22', '2509', '未锁定');
+INSERT INTO `sale` VALUES ('854', '22', '2510', '已交易');
+INSERT INTO `sale` VALUES ('855', '22', '2511', '已交易');
+INSERT INTO `sale` VALUES ('856', '22', '2512', '未锁定');
+INSERT INTO `sale` VALUES ('857', '22', '2513', '未锁定');
+INSERT INTO `sale` VALUES ('858', '22', '2514', '未锁定');
+INSERT INTO `sale` VALUES ('859', '22', '2515', '未锁定');
+INSERT INTO `sale` VALUES ('860', '22', '2516', '未锁定');
+INSERT INTO `sale` VALUES ('861', '22', '2517', '未锁定');
+INSERT INTO `sale` VALUES ('862', '22', '2518', '未锁定');
+INSERT INTO `sale` VALUES ('863', '22', '2519', '未锁定');
+INSERT INTO `sale` VALUES ('864', '22', '2520', '未锁定');
+INSERT INTO `sale` VALUES ('865', '22', '2521', '未锁定');
+INSERT INTO `sale` VALUES ('866', '22', '2522', '未锁定');
+INSERT INTO `sale` VALUES ('867', '22', '2523', '未锁定');
+INSERT INTO `sale` VALUES ('868', '22', '2524', '未锁定');
+INSERT INTO `sale` VALUES ('869', '22', '2525', '未锁定');
+INSERT INTO `sale` VALUES ('870', '22', '2526', '未锁定');
+INSERT INTO `sale` VALUES ('871', '22', '2527', '未锁定');
+INSERT INTO `sale` VALUES ('872', '22', '2528', '未锁定');
+INSERT INTO `sale` VALUES ('873', '22', '2529', '未锁定');
+INSERT INTO `sale` VALUES ('874', '22', '2530', '未锁定');
+INSERT INTO `sale` VALUES ('875', '22', '2531', '未锁定');
+INSERT INTO `sale` VALUES ('876', '22', '2532', '未锁定');
+INSERT INTO `sale` VALUES ('877', '22', '2533', '未锁定');
+INSERT INTO `sale` VALUES ('878', '22', '2534', '未锁定');
+INSERT INTO `sale` VALUES ('879', '22', '2535', '未锁定');
+INSERT INTO `sale` VALUES ('880', '22', '2536', '未锁定');
+INSERT INTO `sale` VALUES ('881', '22', '2537', '未锁定');
+INSERT INTO `sale` VALUES ('882', '22', '2538', '未锁定');
+INSERT INTO `sale` VALUES ('883', '22', '2539', '未锁定');
+INSERT INTO `sale` VALUES ('884', '22', '2540', '未锁定');
+INSERT INTO `sale` VALUES ('885', '22', '2541', '未锁定');
+INSERT INTO `sale` VALUES ('886', '22', '2542', '未锁定');
+INSERT INTO `sale` VALUES ('887', '22', '2543', '未锁定');
+INSERT INTO `sale` VALUES ('888', '22', '2544', '未锁定');
+INSERT INTO `sale` VALUES ('889', '22', '2545', '未锁定');
+INSERT INTO `sale` VALUES ('890', '22', '2546', '未锁定');
+INSERT INTO `sale` VALUES ('891', '23', '2226', '未锁定');
+INSERT INTO `sale` VALUES ('892', '23', '2227', '未锁定');
+INSERT INTO `sale` VALUES ('893', '23', '2228', '未锁定');
+INSERT INTO `sale` VALUES ('894', '23', '2229', '未锁定');
+INSERT INTO `sale` VALUES ('895', '23', '2230', '未锁定');
+INSERT INTO `sale` VALUES ('896', '23', '2231', '未锁定');
+INSERT INTO `sale` VALUES ('897', '23', '2232', '未锁定');
+INSERT INTO `sale` VALUES ('898', '23', '2233', '未锁定');
+INSERT INTO `sale` VALUES ('899', '23', '2234', '未锁定');
+INSERT INTO `sale` VALUES ('900', '23', '2235', '未锁定');
+INSERT INTO `sale` VALUES ('901', '23', '2236', '未锁定');
+INSERT INTO `sale` VALUES ('902', '23', '2237', '未锁定');
+INSERT INTO `sale` VALUES ('903', '23', '2238', '未锁定');
+INSERT INTO `sale` VALUES ('904', '23', '2239', '未锁定');
+INSERT INTO `sale` VALUES ('905', '23', '2240', '未锁定');
+INSERT INTO `sale` VALUES ('906', '23', '2241', '未锁定');
+INSERT INTO `sale` VALUES ('907', '23', '2242', '未锁定');
+INSERT INTO `sale` VALUES ('908', '23', '2243', '未锁定');
+INSERT INTO `sale` VALUES ('909', '23', '2244', '未锁定');
+INSERT INTO `sale` VALUES ('910', '23', '2245', '未锁定');
+INSERT INTO `sale` VALUES ('911', '23', '2246', '未锁定');
+INSERT INTO `sale` VALUES ('912', '23', '2247', '未锁定');
+INSERT INTO `sale` VALUES ('913', '23', '2248', '未锁定');
+INSERT INTO `sale` VALUES ('914', '23', '2249', '未锁定');
+INSERT INTO `sale` VALUES ('915', '23', '2250', '未锁定');
+INSERT INTO `sale` VALUES ('916', '23', '2251', '未锁定');
+INSERT INTO `sale` VALUES ('917', '23', '2252', '未锁定');
+INSERT INTO `sale` VALUES ('918', '23', '2253', '未锁定');
+INSERT INTO `sale` VALUES ('919', '23', '2254', '未锁定');
+INSERT INTO `sale` VALUES ('920', '23', '2255', '未锁定');
+INSERT INTO `sale` VALUES ('921', '23', '2256', '未锁定');
+INSERT INTO `sale` VALUES ('922', '23', '2257', '未锁定');
+INSERT INTO `sale` VALUES ('923', '23', '2258', '未锁定');
+INSERT INTO `sale` VALUES ('924', '23', '2259', '未锁定');
+INSERT INTO `sale` VALUES ('925', '23', '2260', '未锁定');
+INSERT INTO `sale` VALUES ('926', '23', '2261', '未锁定');
+INSERT INTO `sale` VALUES ('927', '23', '2262', '未锁定');
+INSERT INTO `sale` VALUES ('928', '23', '2263', '未锁定');
+INSERT INTO `sale` VALUES ('929', '23', '2264', '未锁定');
+INSERT INTO `sale` VALUES ('930', '23', '2265', '未锁定');
+INSERT INTO `sale` VALUES ('931', '23', '2266', '未锁定');
+INSERT INTO `sale` VALUES ('932', '23', '2267', '未锁定');
+INSERT INTO `sale` VALUES ('933', '23', '2268', '未锁定');
+INSERT INTO `sale` VALUES ('934', '23', '2269', '未锁定');
+INSERT INTO `sale` VALUES ('935', '23', '2270', '未锁定');
+INSERT INTO `sale` VALUES ('936', '23', '2271', '未锁定');
+INSERT INTO `sale` VALUES ('937', '23', '2272', '未锁定');
+INSERT INTO `sale` VALUES ('938', '23', '2273', '未锁定');
+INSERT INTO `sale` VALUES ('939', '23', '2274', '未锁定');
+INSERT INTO `sale` VALUES ('940', '23', '2275', '未锁定');
+INSERT INTO `sale` VALUES ('941', '23', '2276', '未锁定');
+INSERT INTO `sale` VALUES ('942', '23', '2277', '未锁定');
+INSERT INTO `sale` VALUES ('943', '23', '2278', '未锁定');
+INSERT INTO `sale` VALUES ('944', '23', '2279', '未锁定');
+INSERT INTO `sale` VALUES ('945', '23', '2280', '未锁定');
+INSERT INTO `sale` VALUES ('946', '23', '2281', '未锁定');
+INSERT INTO `sale` VALUES ('947', '23', '2282', '未锁定');
+INSERT INTO `sale` VALUES ('948', '23', '2283', '未锁定');
+INSERT INTO `sale` VALUES ('949', '23', '2284', '未锁定');
+INSERT INTO `sale` VALUES ('950', '23', '2285', '未锁定');
+INSERT INTO `sale` VALUES ('951', '23', '2286', '未锁定');
+INSERT INTO `sale` VALUES ('952', '23', '2287', '未锁定');
+INSERT INTO `sale` VALUES ('953', '23', '2288', '未锁定');
+INSERT INTO `sale` VALUES ('954', '23', '2289', '已交易');
+INSERT INTO `sale` VALUES ('955', '23', '2290', '未锁定');
+INSERT INTO `sale` VALUES ('956', '23', '2291', '未锁定');
+INSERT INTO `sale` VALUES ('957', '23', '2292', '未锁定');
+INSERT INTO `sale` VALUES ('958', '23', '2293', '未锁定');
+INSERT INTO `sale` VALUES ('959', '23', '2294', '未锁定');
+INSERT INTO `sale` VALUES ('960', '23', '2295', '未锁定');
+INSERT INTO `sale` VALUES ('961', '23', '2296', '未锁定');
+INSERT INTO `sale` VALUES ('962', '23', '2297', '未锁定');
+INSERT INTO `sale` VALUES ('963', '23', '2298', '未锁定');
+INSERT INTO `sale` VALUES ('964', '23', '2299', '未锁定');
+INSERT INTO `sale` VALUES ('965', '23', '2300', '未锁定');
+INSERT INTO `sale` VALUES ('966', '23', '2301', '未锁定');
+INSERT INTO `sale` VALUES ('967', '23', '2302', '未锁定');
+INSERT INTO `sale` VALUES ('968', '23', '2303', '未锁定');
+INSERT INTO `sale` VALUES ('969', '23', '2304', '未锁定');
+INSERT INTO `sale` VALUES ('970', '23', '2305', '未锁定');
+INSERT INTO `sale` VALUES ('971', '23', '2306', '未锁定');
+INSERT INTO `sale` VALUES ('972', '23', '2307', '未锁定');
+INSERT INTO `sale` VALUES ('973', '23', '2308', '未锁定');
+INSERT INTO `sale` VALUES ('974', '23', '2309', '未锁定');
+INSERT INTO `sale` VALUES ('975', '23', '2310', '未锁定');
+INSERT INTO `sale` VALUES ('976', '23', '2311', '未锁定');
+INSERT INTO `sale` VALUES ('977', '23', '2312', '未锁定');
+INSERT INTO `sale` VALUES ('978', '23', '2313', '未锁定');
+INSERT INTO `sale` VALUES ('979', '23', '2314', '未锁定');
+INSERT INTO `sale` VALUES ('980', '23', '2315', '未锁定');
+INSERT INTO `sale` VALUES ('981', '23', '2316', '未锁定');
+INSERT INTO `sale` VALUES ('982', '23', '2317', '未锁定');
+INSERT INTO `sale` VALUES ('983', '23', '2318', '已交易');
+INSERT INTO `sale` VALUES ('984', '23', '2319', '已交易');
+INSERT INTO `sale` VALUES ('985', '23', '2320', '已交易');
+INSERT INTO `sale` VALUES ('986', '23', '2321', '未锁定');
+INSERT INTO `sale` VALUES ('987', '23', '2322', '未锁定');
+INSERT INTO `sale` VALUES ('988', '23', '2323', '未锁定');
+INSERT INTO `sale` VALUES ('989', '23', '2324', '未锁定');
+INSERT INTO `sale` VALUES ('990', '23', '2325', '未锁定');
+INSERT INTO `sale` VALUES ('991', '23', '2326', '未锁定');
+INSERT INTO `sale` VALUES ('992', '23', '2327', '未锁定');
+INSERT INTO `sale` VALUES ('993', '23', '2328', '未锁定');
+INSERT INTO `sale` VALUES ('994', '23', '2329', '未锁定');
+INSERT INTO `sale` VALUES ('995', '23', '2330', '未锁定');
+INSERT INTO `sale` VALUES ('996', '23', '2331', '未锁定');
+INSERT INTO `sale` VALUES ('997', '23', '2332', '未锁定');
+INSERT INTO `sale` VALUES ('998', '23', '2333', '未锁定');
+INSERT INTO `sale` VALUES ('999', '23', '2334', '未锁定');
+INSERT INTO `sale` VALUES ('1000', '23', '2335', '未锁定');
+INSERT INTO `sale` VALUES ('1001', '23', '2336', '未锁定');
+INSERT INTO `sale` VALUES ('1002', '23', '2337', '未锁定');
+INSERT INTO `sale` VALUES ('1003', '23', '2338', '未锁定');
+INSERT INTO `sale` VALUES ('1004', '23', '2339', '未锁定');
+INSERT INTO `sale` VALUES ('1005', '23', '2340', '未锁定');
+INSERT INTO `sale` VALUES ('1006', '23', '2341', '未锁定');
+INSERT INTO `sale` VALUES ('1007', '23', '2342', '未锁定');
+INSERT INTO `sale` VALUES ('1008', '23', '2343', '未锁定');
+INSERT INTO `sale` VALUES ('1009', '23', '2344', '未锁定');
+INSERT INTO `sale` VALUES ('1010', '23', '2345', '未锁定');
+INSERT INTO `sale` VALUES ('1011', '23', '2346', '未锁定');
+INSERT INTO `sale` VALUES ('1012', '23', '2347', '未锁定');
+INSERT INTO `sale` VALUES ('1013', '23', '2348', '未锁定');
+INSERT INTO `sale` VALUES ('1014', '23', '2349', '未锁定');
+INSERT INTO `sale` VALUES ('1015', '23', '2350', '未锁定');
+INSERT INTO `sale` VALUES ('1016', '23', '2351', '未锁定');
+INSERT INTO `sale` VALUES ('1017', '23', '2352', '未锁定');
+INSERT INTO `sale` VALUES ('1018', '23', '2353', '未锁定');
+INSERT INTO `sale` VALUES ('1019', '23', '2354', '未锁定');
+INSERT INTO `sale` VALUES ('1020', '23', '2355', '未锁定');
+INSERT INTO `sale` VALUES ('1021', '23', '2356', '未锁定');
+INSERT INTO `sale` VALUES ('1022', '23', '2357', '未锁定');
+INSERT INTO `sale` VALUES ('1023', '23', '2358', '未锁定');
+INSERT INTO `sale` VALUES ('1024', '23', '2359', '未锁定');
+INSERT INTO `sale` VALUES ('1025', '23', '2360', '未锁定');
+INSERT INTO `sale` VALUES ('1026', '23', '2361', '未锁定');
+INSERT INTO `sale` VALUES ('1027', '23', '2362', '未锁定');
+INSERT INTO `sale` VALUES ('1028', '23', '2363', '未锁定');
+INSERT INTO `sale` VALUES ('1029', '23', '2364', '未锁定');
+INSERT INTO `sale` VALUES ('1030', '23', '2365', '未锁定');
+INSERT INTO `sale` VALUES ('1031', '23', '2366', '未锁定');
+INSERT INTO `sale` VALUES ('1032', '23', '2367', '未锁定');
+INSERT INTO `sale` VALUES ('1033', '23', '2368', '未锁定');
+INSERT INTO `sale` VALUES ('1034', '23', '2369', '未锁定');
+INSERT INTO `sale` VALUES ('1035', '23', '2370', '未锁定');
+INSERT INTO `sale` VALUES ('1036', '23', '2371', '未锁定');
+INSERT INTO `sale` VALUES ('1037', '23', '2372', '未锁定');
+INSERT INTO `sale` VALUES ('1038', '23', '2373', '未锁定');
+INSERT INTO `sale` VALUES ('1039', '23', '2374', '未锁定');
+INSERT INTO `sale` VALUES ('1040', '23', '2375', '未锁定');
+INSERT INTO `sale` VALUES ('1041', '23', '2376', '未锁定');
+INSERT INTO `sale` VALUES ('1042', '23', '2377', '未锁定');
+INSERT INTO `sale` VALUES ('1043', '23', '2378', '未锁定');
+INSERT INTO `sale` VALUES ('1044', '23', '2379', '未锁定');
+INSERT INTO `sale` VALUES ('1045', '23', '2380', '未锁定');
+INSERT INTO `sale` VALUES ('1046', '23', '2381', '未锁定');
+INSERT INTO `sale` VALUES ('1047', '23', '2382', '未锁定');
+INSERT INTO `sale` VALUES ('1048', '23', '2383', '未锁定');
+INSERT INTO `sale` VALUES ('1049', '23', '2384', '未锁定');
+INSERT INTO `sale` VALUES ('1050', '23', '2385', '未锁定');
+INSERT INTO `sale` VALUES ('1051', '23', '2386', '未锁定');
+INSERT INTO `sale` VALUES ('1052', '23', '2387', '未锁定');
+INSERT INTO `sale` VALUES ('1053', '23', '2388', '未锁定');
+INSERT INTO `sale` VALUES ('1054', '23', '2389', '未锁定');
+INSERT INTO `sale` VALUES ('1055', '23', '2390', '未锁定');
+INSERT INTO `sale` VALUES ('1056', '23', '2391', '未锁定');
+INSERT INTO `sale` VALUES ('1057', '23', '2392', '未锁定');
+INSERT INTO `sale` VALUES ('1058', '23', '2393', '未锁定');
+INSERT INTO `sale` VALUES ('1059', '23', '2394', '未锁定');
+INSERT INTO `sale` VALUES ('1060', '23', '2395', '未锁定');
+INSERT INTO `sale` VALUES ('1061', '23', '2396', '未锁定');
+INSERT INTO `sale` VALUES ('1062', '23', '2397', '未锁定');
+INSERT INTO `sale` VALUES ('1063', '23', '2398', '未锁定');
+INSERT INTO `sale` VALUES ('1064', '23', '2399', '未锁定');
+INSERT INTO `sale` VALUES ('1065', '23', '2400', '未锁定');
+INSERT INTO `sale` VALUES ('1066', '23', '2401', '未锁定');
+INSERT INTO `sale` VALUES ('1067', '23', '2402', '未锁定');
+INSERT INTO `sale` VALUES ('1068', '23', '2403', '未锁定');
+INSERT INTO `sale` VALUES ('1069', '23', '2404', '未锁定');
+INSERT INTO `sale` VALUES ('1070', '23', '2405', '未锁定');
+INSERT INTO `sale` VALUES ('1071', '23', '2406', '未锁定');
+INSERT INTO `sale` VALUES ('1072', '23', '2407', '未锁定');
+INSERT INTO `sale` VALUES ('1073', '23', '2408', '未锁定');
+INSERT INTO `sale` VALUES ('1074', '23', '2409', '未锁定');
+INSERT INTO `sale` VALUES ('1075', '23', '2410', '未锁定');
+INSERT INTO `sale` VALUES ('1076', '23', '2411', '未锁定');
+INSERT INTO `sale` VALUES ('1077', '23', '2412', '未锁定');
+INSERT INTO `sale` VALUES ('1078', '23', '2413', '未锁定');
+INSERT INTO `sale` VALUES ('1079', '23', '2414', '未锁定');
+INSERT INTO `sale` VALUES ('1080', '23', '2415', '未锁定');
+INSERT INTO `sale` VALUES ('1081', '23', '2416', '未锁定');
+INSERT INTO `sale` VALUES ('1082', '23', '2417', '未锁定');
+INSERT INTO `sale` VALUES ('1083', '23', '2418', '未锁定');
+INSERT INTO `sale` VALUES ('1084', '23', '2419', '未锁定');
+INSERT INTO `sale` VALUES ('1085', '23', '2420', '未锁定');
+INSERT INTO `sale` VALUES ('1086', '23', '2421', '未锁定');
+INSERT INTO `sale` VALUES ('1087', '23', '2422', '未锁定');
+INSERT INTO `sale` VALUES ('1088', '23', '2423', '未锁定');
+INSERT INTO `sale` VALUES ('1089', '23', '2424', '未锁定');
+INSERT INTO `sale` VALUES ('1090', '23', '2425', '未锁定');
+INSERT INTO `sale` VALUES ('1091', '23', '2426', '未锁定');
+INSERT INTO `sale` VALUES ('1092', '23', '2427', '未锁定');
+INSERT INTO `sale` VALUES ('1093', '23', '2428', '未锁定');
+INSERT INTO `sale` VALUES ('1094', '23', '2429', '未锁定');
+INSERT INTO `sale` VALUES ('1095', '23', '2430', '未锁定');
+INSERT INTO `sale` VALUES ('1096', '23', '2431', '未锁定');
+INSERT INTO `sale` VALUES ('1097', '23', '2432', '未锁定');
+INSERT INTO `sale` VALUES ('1098', '23', '2433', '未锁定');
+INSERT INTO `sale` VALUES ('1099', '23', '2434', '未锁定');
+INSERT INTO `sale` VALUES ('1100', '23', '2435', '未锁定');
+INSERT INTO `sale` VALUES ('1101', '23', '2436', '未锁定');
+INSERT INTO `sale` VALUES ('1102', '23', '2437', '未锁定');
+INSERT INTO `sale` VALUES ('1103', '23', '2438', '未锁定');
+INSERT INTO `sale` VALUES ('1104', '23', '2439', '未锁定');
+INSERT INTO `sale` VALUES ('1105', '23', '2440', '未锁定');
+INSERT INTO `sale` VALUES ('1106', '23', '2441', '未锁定');
+INSERT INTO `sale` VALUES ('1107', '23', '2442', '未锁定');
+INSERT INTO `sale` VALUES ('1108', '23', '2443', '未锁定');
+INSERT INTO `sale` VALUES ('1109', '23', '2444', '未锁定');
+INSERT INTO `sale` VALUES ('1110', '23', '2445', '未锁定');
+INSERT INTO `sale` VALUES ('1111', '23', '2446', '未锁定');
+
+-- ----------------------------
 -- Table structure for schedule
 -- ----------------------------
 DROP TABLE IF EXISTS `schedule`;
@@ -54,17 +523,16 @@ CREATE TABLE `schedule` (
   PRIMARY KEY (`Schedule_ID`),
   KEY `FK_MOVIE_SCHE` (`Movie_Id`),
   KEY `FK_SCHE_STUDIO` (`Studio_ID`),
-  CONSTRAINT `FK_SCHE_STUDIO` FOREIGN KEY (`Studio_ID`) REFERENCES `studio` (`Studio_ID`),
-  CONSTRAINT `FK_MOVIE_SCHE` FOREIGN KEY (`Movie_Id`) REFERENCES `movie` (`Movie_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  CONSTRAINT `FK_MOVIE_SCHE` FOREIGN KEY (`Movie_Id`) REFERENCES `movie` (`Movie_Id`),
+  CONSTRAINT `FK_SCHE_STUDIO` FOREIGN KEY (`Studio_ID`) REFERENCES `studio` (`Studio_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of schedule
 -- ----------------------------
-INSERT INTO `schedule` VALUES ('1', '1', '2', '2017/06/03 17:00', '2017/06/03 19:06');
-INSERT INTO `schedule` VALUES ('3', '4', '6', '2017-06-03 12:50', '2017-06-03 14:59');
-INSERT INTO `schedule` VALUES ('5', '6', '7', '2017-06-03 15:01', '2017-06-03 17:17');
-INSERT INTO `schedule` VALUES ('6', '1', '6', '2017-06-03 16:40', '2017-06-03 18:46');
+INSERT INTO `schedule` VALUES ('17', '1', '5', '2017-06-10 12:03', '2017-06-10 14:23');
+INSERT INTO `schedule` VALUES ('22', '6', '3', '2017-06-08 16:00', '2017-06-08 18:16');
+INSERT INTO `schedule` VALUES ('23', '1', '2', '2017-06-10 15:12', '2017-06-10 17:21');
 
 -- ----------------------------
 -- Table structure for seat
@@ -79,7 +547,7 @@ CREATE TABLE `seat` (
   PRIMARY KEY (`Seat_ID`),
   KEY `FK_STUDIO_SEAT` (`Studio_ID`),
   CONSTRAINT `FK_STUDIO_SEAT` FOREIGN KEY (`Studio_ID`) REFERENCES `studio` (`Studio_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3321 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3375 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of seat
@@ -134,7 +602,7 @@ INSERT INTO `seat` VALUES ('2103', '1', '4', '8', '未锁定');
 INSERT INTO `seat` VALUES ('2104', '1', '4', '9', '未锁定');
 INSERT INTO `seat` VALUES ('2105', '1', '4', '10', '未锁定');
 INSERT INTO `seat` VALUES ('2106', '1', '4', '11', '未锁定');
-INSERT INTO `seat` VALUES ('2107', '1', '4', '12', '未锁定');
+INSERT INTO `seat` VALUES ('2107', '1', '4', '12', '已损坏');
 INSERT INTO `seat` VALUES ('2108', '1', '4', '13', '未锁定');
 INSERT INTO `seat` VALUES ('2109', '1', '5', '1', '未锁定');
 INSERT INTO `seat` VALUES ('2110', '1', '5', '2', '未锁定');
@@ -1348,6 +1816,60 @@ INSERT INTO `seat` VALUES ('3317', '8', '15', '12', '未锁定');
 INSERT INTO `seat` VALUES ('3318', '8', '15', '13', '未锁定');
 INSERT INTO `seat` VALUES ('3319', '8', '15', '14', '未锁定');
 INSERT INTO `seat` VALUES ('3320', '8', '15', '15', '未锁定');
+INSERT INTO `seat` VALUES ('3321', '9', '1', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3322', '9', '1', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3323', '9', '1', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3324', '9', '1', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3325', '9', '1', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3326', '9', '1', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3327', '9', '1', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3328', '9', '1', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3329', '9', '1', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3330', '9', '2', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3331', '9', '2', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3332', '9', '2', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3333', '9', '2', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3334', '9', '2', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3335', '9', '2', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3336', '9', '2', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3337', '9', '2', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3338', '9', '2', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3339', '9', '3', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3340', '9', '3', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3341', '9', '3', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3342', '9', '3', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3343', '9', '3', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3344', '9', '3', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3345', '9', '3', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3346', '9', '3', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3347', '9', '3', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3348', '9', '4', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3349', '9', '4', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3350', '9', '4', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3351', '9', '4', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3352', '9', '4', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3353', '9', '4', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3354', '9', '4', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3355', '9', '4', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3356', '9', '4', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3357', '9', '5', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3358', '9', '5', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3359', '9', '5', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3360', '9', '5', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3361', '9', '5', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3362', '9', '5', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3363', '9', '5', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3364', '9', '5', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3365', '9', '5', '9', '未锁定');
+INSERT INTO `seat` VALUES ('3366', '9', '6', '1', '未锁定');
+INSERT INTO `seat` VALUES ('3367', '9', '6', '2', '未锁定');
+INSERT INTO `seat` VALUES ('3368', '9', '6', '3', '未锁定');
+INSERT INTO `seat` VALUES ('3369', '9', '6', '4', '未锁定');
+INSERT INTO `seat` VALUES ('3370', '9', '6', '5', '未锁定');
+INSERT INTO `seat` VALUES ('3371', '9', '6', '6', '未锁定');
+INSERT INTO `seat` VALUES ('3372', '9', '6', '7', '未锁定');
+INSERT INTO `seat` VALUES ('3373', '9', '6', '8', '未锁定');
+INSERT INTO `seat` VALUES ('3374', '9', '6', '9', '未锁定');
 
 -- ----------------------------
 -- Table structure for studio
@@ -1359,7 +1881,7 @@ CREATE TABLE `studio` (
   `Studio_Row` int(11) DEFAULT NULL,
   `Studio_Col` int(11) DEFAULT NULL,
   PRIMARY KEY (`Studio_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of studio
@@ -1372,6 +1894,7 @@ INSERT INTO `studio` VALUES ('5', '3厅', '13', '10');
 INSERT INTO `studio` VALUES ('6', '全景声厅', '13', '10');
 INSERT INTO `studio` VALUES ('7', '激光厅', '13', '13');
 INSERT INTO `studio` VALUES ('8', '全景声MAX厅（大）', '15', '15');
+INSERT INTO `studio` VALUES ('9', '4厅', '6', '9');
 
 -- ----------------------------
 -- Table structure for ticket
@@ -1383,15 +1906,22 @@ CREATE TABLE `ticket` (
   `Ticket_Price` float(5,2) DEFAULT NULL,
   `Ticket_Time` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`Ticket_ID`),
-  KEY `FK_SCHE_TICKET` (`Schedule_ID`),
-  CONSTRAINT `FK_SCHE_TICKET` FOREIGN KEY (`Schedule_ID`) REFERENCES `schedule` (`Schedule_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  KEY `FK_SCHE_TICKET` (`Schedule_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ticket
 -- ----------------------------
-INSERT INTO `ticket` VALUES ('1', '1', '116.40', '2017/6/6 1:7:42');
-INSERT INTO `ticket` VALUES ('2', '1', '38.80', '2017/6/6 8:58:3');
+INSERT INTO `ticket` VALUES ('3', '16', '29.00', '2017/6/8 10:44:10');
+INSERT INTO `ticket` VALUES ('4', '16', '29.00', '2017/6/8 10:50:50');
+INSERT INTO `ticket` VALUES ('5', '16', '29.00', '2017/6/8 10:52:28');
+INSERT INTO `ticket` VALUES ('6', '20', '140.00', '2017/6/8 11:10:44');
+INSERT INTO `ticket` VALUES ('7', '22', '190.00', '2017/6/8 11:10:59');
+INSERT INTO `ticket` VALUES ('8', '20', '56.00', '2017/6/8 11:11:6');
+INSERT INTO `ticket` VALUES ('9', '20', '56.00', '2017/6/8 11:11:31');
+INSERT INTO `ticket` VALUES ('10', '17', '116.40', '2017/6/8 11:12:17');
+INSERT INTO `ticket` VALUES ('11', '23', '116.40', '2017/6/8 11:12:25');
+INSERT INTO `ticket` VALUES ('12', '23', '38.80', '2017/6/8 11:35:57');
 
 -- ----------------------------
 -- Table structure for user
@@ -1404,7 +1934,7 @@ CREATE TABLE `user` (
   `User_Pwds` varchar(255) DEFAULT NULL,
   `User_Type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`User_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
@@ -1412,6 +1942,5 @@ CREATE TABLE `user` (
 INSERT INTO `user` VALUES ('1', '王二狗', '1256159', '77819e5b77d94ca6e65962cfab3c06c7', '售票员');
 INSERT INTO `user` VALUES ('2', '宁鑫磊', '12345678', null, '管理员');
 INSERT INTO `user` VALUES ('3', '惠国强', '123456', 'e10adc3949ba59abbe56e057f20f883e', '管理员');
-INSERT INTO `user` VALUES ('4', '李晨冬', '04143016', 'c22e0778f36841df151559bb93c744c5', '管理员');
 INSERT INTO `user` VALUES ('5', '房文哲', '04143017', 'e70bf1c2ea163c35a5d48860ccb8e2bf', '管理员');
 SET FOREIGN_KEY_CHECKS=1;
